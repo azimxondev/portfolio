@@ -705,6 +705,7 @@
   
     .hero__img {
       justify-self: flex-end;
+      margin-bottom: 190px;
     }
   }
   
