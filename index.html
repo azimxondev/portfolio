@@ -4,35 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="title" content="Azimkhan - Full Stack Developer Portfolio">
+    <meta name="title" content="Azimxon — Backend Developer Portfolio">
     <meta name="description"
-        content="Discover Hamza Zaidi's professional portfolio showcasing expertise in full-stack development, web applications, and innovative solutions. Explore projects, skills, and achievements.">
+        content="Azimxon — 20-year-old backend developer. Building reliable server-side apps, clean APIs and well-structured databases. Available in English, Uzbek and Russian.">
     <meta name="keywords"
-        content="Hamza Zaidi, Full Stack Developer, Portfolio, Web Development, React.js, Frontend, Backend, Software Engineer, Professional Portfolio, Innovative Solutions, syed hamza jaffar zaidi, hamza jaffar, portfolio website, hamza">
-    <meta name="author" content="Syed Hamza Jaffar Zaidi">
+        content="Azimxon, Azimxon Ergashev, Backend Developer, Portfolio, API, Python, Node.js, Databases, PostgreSQL, Docker, Uzbekistan Developer">
+    <meta name="author" content="Azimxon Ergashev">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="revisit-after" content="7 days">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-    <title>Azimkhan Portfolio</title>
+    <title>Azimxon — Backend Developer</title>
+
     <!--=================== Main CSS ====================-->
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css?v=2">
+
     <!--=================== Google Fonts ====================-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
         rel="stylesheet">
-
 
     <!--=================== Remixicons ====================-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
-    <!--=================== SwiperJS CSS ====================-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-
+    <!--=================== Font Awesome (social icons) ====================-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
+    <!--=================== Devicon (tech stack icons) ====================-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 </head>
 
 <body>
@@ -41,536 +41,444 @@
     <header id="header" class="header">
         <div class="container">
             <nav class="nav">
-                <a href="/" class="nav__brand">
-                    <i class="ri-code-s-slash-line"></i><Span>Azimkhan</Span>
+                <a href="#hero" class="nav__brand">
+                    <i class="ri-terminal-box-fill"></i><span>Azimxon</span>
                 </a>
+
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
-                        <li class="nav__item">
-                            <a href="#hero" class="nav__link">Home</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#about" class="nav__link">About</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#qualification" class="nav__link">Qualification</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#services" class="nav__link">Services</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#project" class="nav__link">Projects</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="https://shjz.hashnode.dev/" class="nav__link">Blogs</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#contact" class="nav__link">Contact</a>
+                        <li class="nav__item"><a href="#hero" class="nav__link" data-i18n="nav.home">Home</a></li>
+                        <li class="nav__item"><a href="#about" class="nav__link" data-i18n="nav.about">About</a></li>
+                        <li class="nav__item"><a href="#skills" class="nav__link" data-i18n="nav.skills">Skills</a></li>
+                        <li class="nav__item"><a href="#goals" class="nav__link" data-i18n="nav.goals">Goals</a></li>
+                        <li class="nav__item"><a href="#services" class="nav__link"
+                                data-i18n="nav.services">Services</a></li>
+                        <li class="nav__item"><a href="#projects" class="nav__link"
+                                data-i18n="nav.projects">Projects</a></li>
+                        <li class="nav__item"><a href="#contact" class="nav__link" data-i18n="nav.contact">Contact</a>
                         </li>
                     </ul>
+
+                    <!-- Language switcher (also visible inside mobile menu) -->
+                    <div class="lang-switch lang-switch--menu">
+                        <button class="lang-btn" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="uz">UZ</button>
+                        <button class="lang-btn" data-lang="ru">RU</button>
+                    </div>
                 </div>
-                <div class="nav__toggle">
-                    <i id="nav-toggle" class="ri-menu-3-line"></i>
+
+                <div class="nav__actions">
+                    <!-- Language switcher (desktop, top-right) -->
+                    <div class="lang-switch lang-switch--top">
+                        <button class="lang-btn" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="uz">UZ</button>
+                        <button class="lang-btn" data-lang="ru">RU</button>
+                    </div>
+                    <div class="nav__toggle">
+                        <i id="nav-toggle" class="ri-menu-3-line"></i>
+                    </div>
                 </div>
             </nav>
         </div>
     </header>
-    <!--=================== main ====================-->
+
+    <!--=================== Main ====================-->
     <main class="main">
+
         <!--=================== Hero ====================-->
         <section id="hero" class="hero">
             <div class="container">
                 <div class="d-grid hero__wrapper">
                     <div class="hero__content">
-                        <h1 class="hero__title">Hi, I am Azimkhan</h1>
-                        <h2 id="typewriter"
-                            style="font-size: 25px; font-weight: bold; color: #1e90ff; border-right: 2px solid #1e90ff; white-space: nowrap; overflow: hidden; display: inline-block;">
+                        <span class="hero__kicker" data-i18n="hero.kicker">👋 Hello, my name is</span>
+                        <h1 class="hero__title">Azimxon</h1>
+                        <h2 class="hero__role">
+                            <span class="hero__role-prompt">&gt;</span>
+                            <span id="typewriter"></span><span class="hero__cursor"></span>
                         </h2>
-                        <p style="margin-top:15px;" class="hero__description">🌟 Passionate Certified Web Developer and
-                            Computer Science student
-                            🎓, dedicated to crafting user-centric websites and web apps 💻.
-                            Proficient in many programming languages 👨‍💻, delivering top-notch, responsive, and
-                            visually stunning websites 🌐. A quick learner and problem-solving enthusiast 🤔, driven by
-                            creativity and strategic thinking 💡. Currently exploring opportunities to contribute skills
-                            and collaborate on dynamic projects 🤝.
+                        <p class="hero__description" data-i18n="hero.desc">
+                            I'm a 20-year-old backend developer in the making — passionate about building reliable
+                            server-side applications, clean APIs and well-structured databases.
                         </p>
-                        <a href="mailto:azimxonergashev122@gmail.com" class="btn--primary"
-                            style="padding:1.5rem 4rem;margin-bottom:10px;display:inline-block;">Hire Me!</a>
-                      
+                        <div class="hero__buttons">
+                            <a href="#contact" class="btn btn--primary">
+                                <span data-i18n="hero.btn_contact">Contact Me</span>
+                                <i class="ri-send-plane-fill"></i>
+                            </a>
+                            <a href="#projects" class="btn btn--ghost">
+                                <span data-i18n="hero.btn_projects">View Projects</span>
+                            </a>
+                        </div>
+                        <div class="hero__socials">
+                            <a href="https://t.me/azimxon_122" target="_blank" rel="noopener" aria-label="Telegram"><i
+                                    class="fa-brands fa-telegram"></i></a>
+                            <a href="https://instagram.com/azimxon_122" target="_blank" rel="noopener"
+                                aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <!-- TODO: o'z GitHub username'ingni qo'y -->
+                            <a href="https://github.com/azimxon-ergashev" target="_blank" rel="noopener"
+                                aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/azimxon-ergashev" target="_blank" rel="noopener"
+                                aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
                     </div>
-                    <img src="assets/img/gorgeous_dynamic_tropical_stylish_hipster_with_a_beard_and_glasses.png" alt="Hamza" class="hero__img">
+
+                    <!-- Terminal / code card (backend themed hero visual) -->
+                    <div class="hero__visual">
+                        <div class="terminal">
+                            <div class="terminal__bar">
+                                <span class="terminal__dot terminal__dot--red"></span>
+                                <span class="terminal__dot terminal__dot--yellow"></span>
+                                <span class="terminal__dot terminal__dot--green"></span>
+                                <span class="terminal__file">developer.py</span>
+                            </div>
+                            <pre class="terminal__code"><code><span class="c-key">class</span> <span class="c-cls">Developer</span>:
+    name    = <span class="c-str">"Azimxon"</span>
+    age     = <span class="c-num">20</span>
+    role    = <span class="c-str">"Backend Developer"</span>
+    stack   = [<span class="c-str">"Python"</span>, <span class="c-str">"Node.js"</span>, <span class="c-str">"SQL"</span>]
+    learning = <span class="c-key">True</span>
+
+    <span class="c-key">def</span> <span class="c-fn">goal</span>(self):
+        <span class="c-key">return</span> <span class="c-str">"Mentor &amp; build great teams"</span></code></pre>
+                        </div>
+                        <!-- O'z rasmingni qo'shmoqchi bo'lsang, yuqoridagi terminal o'rniga:
+                        <img src="assets/img/MENING-RASMIM.png" alt="Azimxon" class="hero__img"> -->
+                    </div>
                 </div>
             </div>
         </section>
+
         <!--=================== About ====================-->
         <section id="about" class="section about">
             <div class="container">
                 <div class="section__header">
-                    <h2 class="section__title">About Me</h2>
-                    <span class="section__subtitle">Who am I</span>
+                    <h2 class="section__title" data-i18n="about.title">About Me</h2>
+                    <span class="section__subtitle" data-i18n="about.subtitle">Who am I</span>
                 </div>
                 <div class="d-grid about__wrapper">
                     <div class="about__content">
-                        <h3 class="about__title">I'm a Professional and Experienced Software Developer.</h3>
-                        <p class="about__description">I have a strong focus on creating intuitive and efficient software
-                            solutions to meet the needs of clients and end-users.
-                            When I'm not coding, I love to stay up-to-date with the latest technology trends and
-                            imporiving my skills.
-                            I'm always eager to take new challenges and work with a team to deliver exceptional results.
+                        <h3 class="about__heading" data-i18n="about.heading">
+                            A backend developer focused on logic, data and clean architecture.
+                        </h3>
+                        <p class="about__description" data-i18n="about.p1">
+                            My name is Azimxon, I'm 20 years old and I'm currently studying backend development.
+                            I enjoy the part of software you don't see — server-side logic, APIs, databases and
+                            making systems fast and reliable.
                         </p>
-                        <a href="#project" class="btn btn--primary">Know More</a>
+                        <p class="about__description" data-i18n="about.p2">
+                            I learn every day and I'm looking for opportunities to grow, join a strong engineering
+                            team and turn ideas into real, working products.
+                        </p>
+                        <a href="#contact" class="btn btn--primary">
+                            <span data-i18n="about.btn">Let's Talk</span>
+                        </a>
                     </div>
-                    <div class="skills">
-                        <h3 class="skills__title">Technologies I've been working with:</h3>
-                        <div class="skills__wrapper">
-                            <div class="skills__content">
-                                <h4 class="skills__subtitle">Backend</h4>
-                                <ul class="skills__list">
-
-                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
-                                        PHP</li>
-                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
-                                        Node.js</li>
-                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
-                                        MongoDB</li>
-                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
-                                        MySQL</li>
-                                </ul>
-                            </div>
-                            <div class="skills__content">
-                                <h4 class="skills__subtitle">Frontend</h4>
-                                <ul class="skills__list">
-                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
-                                        HTML</li>
-                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
-                                        CSS</li>
-                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
-                                        JavaScript</li>
-                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
-                                        Bootstrap</li>
-                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
-                                        React</li>
-                                    <li class="skills__item"><i class="ri-arrow-right-s-fill"></i>
-                                        Next JS</li>
-                                </ul>
-                            </div>
+                    <div class="about__stats">
+                        <div class="stat-card">
+                            <span class="stat-card__num">20</span>
+                            <span class="stat-card__label" data-i18n="about.stat_age">Years old</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-card__num">∞</span>
+                            <span class="stat-card__label" data-i18n="about.stat_learn">Always learning</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class="ri-server-fill stat-card__icon"></i>
+                            <span class="stat-card__label" data-i18n="about.stat_focus">Backend focused</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class="ri-team-fill stat-card__icon"></i>
+                            <span class="stat-card__label" data-i18n="about.stat_team">Team player</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!--=================== Qualification ====================-->
-        <section id="qualification" class="section qualification">
+        <!--=================== Skills / Tech Stack ====================-->
+        <section id="skills" class="section skills">
             <div class="container">
                 <div class="section__header">
-                    <h2 class="section__title">Qualification</h2>
-                    <span class="section__subtitle">Experience & Education</span>
+                    <h2 class="section__title" data-i18n="skills.title">Tech Stack</h2>
+                    <span class="section__subtitle" data-i18n="skills.subtitle">Technologies I work with</span>
                 </div>
-                <!--============== Professional Experience ============-->
-                <div class="qualification__wrapper">
-                    <h3 class="qualification__name">
-                        <i class="ri-briefcase-fill"></i>
-                        Professional Experience
-                    </h3>
-                    <div class="d-grid qualification__content">
-                        <!-- Experience 1-->
-                        <div class="qualification__item">
-                            <h3 class="qualification__title">Freelance software Developer</h3>
-                            <p class="qualification__description">As a freelance software developer, I am passionate
-                                about creating innovative and effective software solutions thats meet the unique needs
-                                of my clients.
-                                Whether it's building a custom web application or automating business processes, I bring
-                                expertise and creativity to every project,
-                                and I am always looking for new and challenging projects to tackle.
-                            </p>
-                            <span class="qualification__date">Currently from 2019</span>
-                        </div>
-                    </div>
-                </div>
-                <!--============== Education ============-->
-                <div class="qualification__wrapper">
-                    <h3 class="qualification__name">
-                        <i class="ri-booklet-fill"></i>
-                        Education
-                    </h3>
-                    <div class="d-grid qualification__content">
-                        <!-- Education 1-->
-                        <div class="qualification__item">
-                            <h3 class="qualification__title">Bachelor's in Computer Science</h3>
-                            <h4 class="qualification__title">Iqra University</h4>
-                            <p class="qualification__description">As a computer science student, I have a strong
-                                foundation in object-oriented algorithms, data structures, software design and
-                                Development.
-                                My coursework has provided me with a deep understanding of the principles and practices
-                                of computer science,
-                                and I have honed my programming skills through various projects and assignments.
-                            </p>
-                            <span class="qualification__date">Completed in 2025</span>
-                        </div>
-                        <!-- Education 2-->
-                        <div class="qualification__item">
-                            <h3 class="qualification__title">Intermediate</h3>
-                            <h4 class="qualification__title">Govt. Jinnah Boys College</h4>
-                            <span class="qualification__date">Completed in 2019</span>
-                        </div>
-                        <!-- Education 3-->
-                        <div class="qualification__item">
-                            <h3 class="qualification__title">Matriculation</h3>
-                            <h4 class="qualification__title">Fatimiyah Boys School</h4>
-                            <p class="qualification__description">
-                            </p>
-                            <span class="qualification__date">Completed in 2017</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="qualification__footer">
-                    <p class="qualification__footer-text">See my full resume</p>
-                    <a href="./assets/My Resume 1.pdf" download class="btn btn--primary">Resume</a>
-                </div>
-            </div>
-        </section>
 
-        <!--=================== services ====================-->
-        <section id="services" class="section services" style="padding: 80px 0; background-color: inherit;">
-            <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-                <h2 style="font-size: 32px; font-weight: bold; text-align: center; color: white; margin-bottom: 32px;">
-                    Services
-                </h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
-                    <!-- Front-End Development -->
-                    <div
-                        style="background-color: black; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
-                        <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                            <i class="ri-layout-4-fill" style="font-size: 40px; color: #4299e1;"></i>
+                <!-- TODO: O'zing ishlatadigan texnologiyalarni qoldir, qolganini o'chir -->
+                <div class="d-grid skills__wrapper">
+                    <div class="skills__group">
+                        <h3 class="skills__group-title" data-i18n="skills.cat1">Languages &amp; Frameworks</h3>
+                        <div class="tech-grid">
+                            <div class="tech"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+                            <div class="tech"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></div>
+                            <div class="tech"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span>
+                            </div>
+                            <div class="tech"><i class="devicon-fastapi-plain colored"></i><span>FastAPI</span></div>
                         </div>
-                        <h3
-                            style="font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 8px; color: white;">
-                            Front-End Development
-                        </h3>
-                        <p style="color: #718096; text-align: center;">Creating responsive and interactive user
-                            interfaces using modern web technologies.</p>
                     </div>
 
-                    <!-- UI/UX Design -->
-                    <div
-                        style="background-color: black; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
-                        <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                            <i class="ri-pen-nib-fill" style="font-size: 40px; color: #9f7aea;"></i>
+                    <div class="skills__group">
+                        <h3 class="skills__group-title" data-i18n="skills.cat2">Databases</h3>
+                        <div class="tech-grid">
+                            <div class="tech"><i class="devicon-postgresql-plain colored"></i><span>PostgreSQL</span>
+                            </div>
+                            <div class="tech"><i class="devicon-mysql-plain colored"></i><span>MySQL</span></div>
+                            <div class="tech"><i class="devicon-mongodb-plain colored"></i><span>MongoDB</span></div>
+                            <div class="tech"><i class="devicon-redis-plain colored"></i><span>Redis</span></div>
                         </div>
-                        <h3
-                            style="font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 8px; color: white;">
-                            UI/UX Design
-                        </h3>
-                        <p style="color: #718096; text-align: center;">Designing intuitive and visually appealing user
-                            experiences for web and mobile applications.</p>
                     </div>
 
-                    <!-- Full-Stack Projects -->
-                    <div
-                        style="background-color: black; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
-                        <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                            <i class="ri-code-s-slash-line" style="font-size: 40px; color: #48bb78;"></i>
+                    <div class="skills__group">
+                        <h3 class="skills__group-title" data-i18n="skills.cat3">Tools &amp; DevOps</h3>
+                        <div class="tech-grid">
+                            <div class="tech"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
+                            <div class="tech"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+                            <div class="tech"><i class="devicon-linux-plain colored"></i><span>Linux</span></div>
+                            <div class="tech"><i class="devicon-nginx-original colored"></i><span>Nginx</span></div>
                         </div>
-                        <h3
-                            style="font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 8px; color: white;">
-                            Full-Stack Projects
-                        </h3>
-                        <p style="color: #718096; text-align: center;">Developing end-to-end web applications with both
-                            front-end and back-end functionalities.</p>
-                    </div>
-
-                    <!-- Mobile App Development -->
-                    <div
-                        style="background-color: black; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
-                        <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                            <i class="ri-smartphone-line" style="font-size: 40px; color: #319795;"></i>
-                        </div>
-                        <h3
-                            style="font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 8px; color: white;">
-                            Mobile App Development
-                        </h3>
-                        <p style="color: #718096; text-align: center;">Building user-friendly mobile applications for
-                            Android platforms using Flutter and React Native.</p>
-                    </div>
-
-                    <!-- Social Media Marketing -->
-                    <div
-                        style="background-color: black; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
-                        <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                            <i class="ri-share-fill" style="font-size: 40px; color: #ecc94b;"></i>
-                        </div>
-                        <h3
-                            style="font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 8px; color: white;">
-                            Social Media Marketing
-                        </h3>
-                        <p style="color: #718096; text-align: center;">Promoting and managing businesses on platforms
-                            like Facebook, Instagram, Twitter, and LinkedIn.</p>
-                    </div>
-
-                    <!-- MS Office Services -->
-                    <div
-                        style="background-color: black; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
-                        <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                            <i class="ri-file-fill" style="font-size: 40px; color: #5a67d8;"></i>
-                        </div>
-                        <h3
-                            style="font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 8px; color: white;">
-                            MS Office Services
-                        </h3>
-                        <p style="color: #718096; text-align: center;">Expertise in MS Word, Excel, PowerPoint, and
-                            Power BI for business productivity solutions.</p>
-                    </div>
-
-                    <!-- Graphic Designing Services -->
-                    <div
-                        style="background-color: black; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
-                        <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                            <i class="ri-palette-line" style="font-size: 40px; color: #d45757;"></i>
-                        </div>
-                        <h3
-                            style="font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 8px; color: white;">
-                            Graphic Designing Services
-                        </h3>
-                        <p style="color: #718096; text-align: center;">Delivering innovative designs to elevate your
-                            brand and captivate your audience using Adobe software, Canva, and AI tools.</p>
-                    </div>
-
-                    <!-- Other Miscellaneous Services -->
-                    <div
-                        style="background-color: black; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s;">
-                        <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                            <i class="ri-lightbulb-flash-fill" style="font-size: 40px; color: #00ccff;"></i>
-                        </div>
-                        <h3
-                            style="font-size: 20px; font-weight: 600; text-align: center; margin-bottom: 8px; color: white;">
-                            Other Miscellaneous Services
-                        </h3>
-                        <p style="color: #718096; text-align: center;">Providing tailored solutions and custom services
-                            for any unique requirements. You name it, we’ll make it happen!</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!--=================== Goals ====================-->
+        <section id="goals" class="section goals">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title" data-i18n="goals.title">My Goals</h2>
+                    <span class="section__subtitle" data-i18n="goals.subtitle">Where I'm heading</span>
+                </div>
+                <div class="d-grid goals__wrapper">
+                    <div class="goal-card">
+                        <div class="goal-card__icon"><i class="ri-user-star-fill"></i></div>
+                        <h3 class="goal-card__title" data-i18n="goals.g1_title">Become a Mentor</h3>
+                        <p class="goal-card__desc" data-i18n="goals.g1_desc">
+                            Grow deep expertise in backend development and help others learn the field.
+                        </p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-card__icon"><i class="ri-building-fill"></i></div>
+                        <h3 class="goal-card__title" data-i18n="goals.g2_title">Join a Company</h3>
+                        <p class="goal-card__desc" data-i18n="goals.g2_desc">
+                            Work as a backend developer in a real company and grow through real challenges.
+                        </p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-card__icon"><i class="ri-team-fill"></i></div>
+                        <h3 class="goal-card__title" data-i18n="goals.g3_title">Work with a Great Team</h3>
+                        <p class="goal-card__desc" data-i18n="goals.g3_desc">
+                            Collaborate with a strong, motivated team and build things together.
+                        </p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-card__icon"><i class="ri-rocket-2-fill"></i></div>
+                        <h3 class="goal-card__title" data-i18n="goals.g4_title">Ship Many Projects</h3>
+                        <p class="goal-card__desc" data-i18n="goals.g4_desc">
+                            Design and deliver many meaningful projects that people actually use.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--=================== Services ====================-->
+        <section id="services" class="section services">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title" data-i18n="services.title">What I Do</h2>
+                    <span class="section__subtitle" data-i18n="services.subtitle">Backend services</span>
+                </div>
+                <div class="d-grid services__wrapper">
+                    <div class="service-card">
+                        <i class="ri-code-box-fill service-card__icon"></i>
+                        <h3 class="service-card__title" data-i18n="services.s1_title">API Development</h3>
+                        <p class="service-card__desc" data-i18n="services.s1_desc">
+                            Building clean, well-documented REST APIs that are easy to use and scale.
+                        </p>
+                    </div>
+                    <div class="service-card">
+                        <i class="ri-database-2-fill service-card__icon"></i>
+                        <h3 class="service-card__title" data-i18n="services.s2_title">Database Design</h3>
+                        <p class="service-card__desc" data-i18n="services.s2_desc">
+                            Designing structured, efficient databases and writing optimized queries.
+                        </p>
+                    </div>
+                    <div class="service-card">
+                        <i class="ri-server-fill service-card__icon"></i>
+                        <h3 class="service-card__title" data-i18n="services.s3_title">Server-side Logic</h3>
+                        <p class="service-card__desc" data-i18n="services.s3_desc">
+                            Implementing reliable business logic and background processes on the server.
+                        </p>
+                    </div>
+                    <div class="service-card">
+                        <i class="ri-robot-2-fill service-card__icon"></i>
+                        <h3 class="service-card__title" data-i18n="services.s4_title">Bot Development</h3>
+                        <p class="service-card__desc" data-i18n="services.s4_desc">
+                            Creating Telegram bots and automation tools that solve real problems.
+                        </p>
+                    </div>
+                    <div class="service-card">
+                        <i class="ri-shield-keyhole-fill service-card__icon"></i>
+                        <h3 class="service-card__title" data-i18n="services.s5_title">Auth &amp; Security</h3>
+                        <p class="service-card__desc" data-i18n="services.s5_desc">
+                            Implementing authentication, authorization and keeping data safe.
+                        </p>
+                    </div>
+                    <div class="service-card">
+                        <i class="ri-git-branch-fill service-card__icon"></i>
+                        <h3 class="service-card__title" data-i18n="services.s6_title">Clean Code &amp; Git</h3>
+                        <p class="service-card__desc" data-i18n="services.s6_desc">
+                            Writing readable, maintainable code and working with version control.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!--=================== Projects ====================-->
-        <section id="project" class="section project">
+        <section id="projects" class="section project">
             <div class="container">
                 <div class="section__header">
-                    <h2 class="section__title">Projects</h2>
-                    <span class="section__subtitle">My recent work</span>
+                    <h2 class="section__title" data-i18n="projects.title">Projects</h2>
+                    <span class="section__subtitle" data-i18n="projects.subtitle">My recent work</span>
                 </div>
+
+                <!-- TODO: Bu 3 loyiha NAMUNA. O'z loyihalaring bilan almashtir (nom, tavsif, GitHub link) -->
                 <div class="d-grid project__wrapper">
-                    <!--============== project 1 =============-->
-                    <div class="project__content">
-                        <img src="assets/img/project1.png" alt="Agency Website" class="project__img">
-                        <a href="https://cryptoverse2x.netlify.app/" class="project__link">
-                            <h3 class="project__title">Cryptoverse</h3>
+                    <div class="project-card">
+                        <div class="project-card__top">
+                            <i class="ri-terminal-box-fill"></i>
+                            <span class="project-card__tag">Python · FastAPI</span>
+                        </div>
+                        <h3 class="project-card__title" data-i18n="projects.p1_title">REST API Service</h3>
+                        <p class="project-card__desc" data-i18n="projects.p1_desc">
+                            A sample backend REST API with authentication, a database and clean endpoints.
+                        </p>
+                        <a href="https://github.com/azimxon-ergashev" target="_blank" rel="noopener"
+                            class="project-card__link">
+                            <span data-i18n="projects.view">View Project</span> <i class="ri-arrow-right-line"></i>
                         </a>
-                        <p class="project__description">Cryptoverse is a React app using the CoinGecko API to display
-                            real-time cryptocurrency data, allowing users to search coins, view details, and explore the
-                            top 100 by market cap in multiple currencies. 💰</p>
-                        <a href="https://github.com/HamzaZaidiX/Cryptoverse" class="project__link">View Project
-                            <i class="ri-arrow-right-line"></i></a>
                     </div>
-                    <!--============== project 2 =============-->
-                    <div class="project__content">
-                        <img src="assets/img/project2.png" alt="Cryptoverse " class="project__img">
-                        <a href="https://play-hangman-shjz.netlify.app/" class="project__link">
-                            <h3 class="project__title">Hangman Game</h3>
+
+                    <div class="project-card">
+                        <div class="project-card__top">
+                            <i class="ri-robot-2-fill"></i>
+                            <span class="project-card__tag">Telegram Bot</span>
+                        </div>
+                        <h3 class="project-card__title" data-i18n="projects.p2_title">Telegram Bot</h3>
+                        <p class="project-card__desc" data-i18n="projects.p2_desc">
+                            An automation bot that handles user requests and connects to a database.
+                        </p>
+                        <a href="https://github.com/azimxon-ergashev" target="_blank" rel="noopener"
+                            class="project-card__link">
+                            <span data-i18n="projects.view">View Project</span> <i class="ri-arrow-right-line"></i>
                         </a>
-                        <p class="project__description">Hangman Game using Vite JS, Typescript and some CSS styling so
-                            Play the Hangman and Guess the Words with friends!</p>
-                        <a href="https://github.com/HamzaZaidiX/Hangman-Game" class="project__link">View Project
-                            <i class="ri-arrow-right-line"></i></a>
                     </div>
-                    <!--============== project 3 =============-->
-                    <div class="project__content">
-                        <img src="assets/img/project3.png" alt="Nike Landing Page" class="project__img">
-                        <a href="https://nike-shjz.netlify.app/" class="project__link">
-                            <h3 class="project__title">Nike Landing Page</h3>
+
+                    <div class="project-card">
+                        <div class="project-card__top">
+                            <i class="ri-database-2-fill"></i>
+                            <span class="project-card__tag">Node.js · SQL</span>
+                        </div>
+                        <h3 class="project-card__title" data-i18n="projects.p3_title">Blog Backend</h3>
+                        <p class="project-card__desc" data-i18n="projects.p3_desc">
+                            A backend for a blog with posts, users and comments stored in a database.
+                        </p>
+                        <a href="https://github.com/azimxon-ergashev" target="_blank" rel="noopener"
+                            class="project-card__link">
+                            <span data-i18n="projects.view">View Project</span> <i class="ri-arrow-right-line"></i>
                         </a>
-                        <p class="project__description">Nike landing page built using React.js and Tailwind CSS a
-                            responsive and visually appealing website.</p>
-                        <a href="https://github.com/HamzaZaidiX/Nike-Landing-Page" class="project__link">View Project
-                            <i class="ri-arrow-right-line"></i></a>
-                    </div>
-                    <!-- ============== project 4 ============= -->
-                    <div class="project__content">
-                        <img src="assets/img/project4.png" alt="linktree clone" class="project__img">
-                        <a href="https://github.com/HamzaZaidiX/Linktree-Clone" class="project__link">
-                            <h3 class="project__title">Linktree Clone</h3>
-                        </a>
-                        <p class="project__description">Linktree Clone using Next JS, MongoDb and Tailwind CSS so you
-                            can give your all Social Links in One place and Share with your friends!</p>
-                        <a href="https://github.com/HamzaZaidiX/Linktree-Clone" class="project__link">View Project
-                            <i class="ri-arrow-right-line"></i></a>
-                    </div>
-                    <!-- ============== project 5 ============= -->
-                    <div class="project__content">
-                        <img src="assets/img/project5.png" alt="Gemini Ai clone" class="project__img">
-                        <a href="https://gemini-clone-shjz.netlify.app/" class="project__link">
-                            <h3 class="project__title">Gemini AI Clone</h3>
-                        </a>
-                        <p class="project__description">Gemini Clone is a project aimed at replicating the functionality
-                            of Gemini AI, powered by the Google Gemini API, using React JS, Vite JS and some CSS styling
-                            🤖💻</p>
-                        <a href="https://github.com/HamzaZaidiX/Gemini-Clone" class="project__link">View Project
-                            <i class="ri-arrow-right-line"></i></a>
-                    </div>
-                    <!-- ============== project 6 ============= -->
-                    <div class="project__content">
-                        <img src="assets/img/project6.png" alt="News 4U" class="project__img">
-                        <a href="https://github.com/HamzaZaidiX/News-4-U" class="project__link">
-                            <h3 class="project__title">News 4U</h3>
-                        </a>
-                        <p class="project__description">News 4 U is the Quickest News Platform which gives to News when
-                            you want inspired to build in Next JS, Typescript and using NEWS API to get latest news for
-                            you! 📰😄</p>
-                        <a href="https://github.com/HamzaZaidiX/News-4-U" class="project__link">View Project
-                            <i class="ri-arrow-right-line"></i></a>
                     </div>
                 </div>
-                <div style="align-items: center;justify-content: center;display: flex; margin-top:10px;"><a
-                        href="https://github.com/HamzaZaidiX?tab=repositories" class="btn--primary"
-                        style="padding:1.5rem 4rem;margin-top:10px;display: inline-block;align-items:center;text-align:center;justify-content:center;">View
-                        More Projects
-                        <i style="text-align:center;" class="fa-solid fa-angle-down fa-bounce"></i></a></div>
+
+                <div class="project__footer">
+                    <!-- TODO: o'z GitHub username'ingni qo'y -->
+                    <a href="https://github.com/azimxon-ergashev" target="_blank" rel="noopener"
+                        class="btn btn--primary">
+                        <i class="fa-brands fa-github"></i>
+                        <span data-i18n="projects.more">More on GitHub</span>
+                    </a>
+                </div>
             </div>
-
-        </section>
-
-        </div>
-        <div class="swiper-pagination"></div>
-        </div>
-        </div>
         </section>
 
         <!--=================== Contact ====================-->
         <section id="contact" class="section contact">
             <div class="container">
-                <div class="d-grid contact__wrapper">
+                <div class="contact__card">
                     <div class="contact__content">
-                        <h2 class="contact__title">Interested in working together? Let's talk</h2>
-                        <p class="contact__description">
-                            Ready to work together on your next software project? I'd love to hear from you!
-                            Feel free to get in touch using the contact information below.
-                            Whether uou have a specific project in mind or just want to chat about your software
-                            development needs , I am here to help.
-                            I will respond to your message as quickly as possible and look forward to connecting with
-                            you soon.
+                        <h2 class="contact__title" data-i18n="contact.title">Interested in working together? Let's talk
+                        </h2>
+                        <p class="contact__description" data-i18n="contact.desc">
+                            Whether you have a project in mind or just want to connect, feel free to reach out.
+                            I'll get back to you as soon as I can.
                         </p>
                     </div>
-                    <div class="contact__btn">
-                        <a style="align-items:center; gap:10px; text-align:center;"
-                            href="https://www.linkedin.com/in/shjz" class="btn btn--secondary">Get in touch
-                            <i class="fa-solid fa-handshake"></i></a>
+                    <div class="contact__btns">
+                        <a href="mailto:azimxonergashev122@gmail.com" class="btn btn--primary">
+                            <i class="fa-regular fa-envelope"></i>
+                            <span data-i18n="contact.btn_email">Send Email</span>
+                        </a>
+                        <a href="https://t.me/azimxon_122" target="_blank" rel="noopener" class="btn btn--ghost">
+                            <i class="fa-brands fa-telegram"></i>
+                            <span data-i18n="contact.btn_tg">Telegram</span>
+                        </a>
                     </div>
                 </div>
-                <!-- Contact Form -->
-                
-            </div>
-
             </div>
         </section>
     </main>
-    <!--=================== footer ====================-->
+
+    <!--=================== Footer ====================-->
     <footer id="footer" class="footer">
         <div class="container">
-            <div class="d-grid footer__wrapper"
-                style="display:flex;justify-content:center; align-items:center; text-align:center;">
-                <div class="footer__content">
-                    <h4 class="footer__title">Follow Me</h4>
-                    <ul class="footer__social-list">
-                        <li class="footer__social-item">
-                            <a href="mailto:azimxonergashev122@gmail.com" target="_blank" class="footer__social-link">
-                                <i class="fa-regular fa-envelope fa-beat-fade"></i>
-                            </a>
-                        </li>
-
-                        <li class="footer__social-item">
-                            <a href="https://api.whatsapp.com/send?phone=923352851947&app=facebook&entry_point=page_cta&fbclid=IwY2xjawGy26kBHUhVHIUy2pIkHelXuOqxRbDCgRi-MgHY7s7Ca9QM4aTeZvJRiN2J9FbU5Q"
-                                target="_blank" class="footer__social-link">
-                                <i class="fa-brands fa-whatsapp fa-beat-fade"></i>
-                            </a>
-                        </li>
-                        <li class="footer__social-item">
-                            <a href="https://www.instagram.com/azimxon_122" target="_blank"
-                                class="footer__social-link">
-                                <i class="fa-brands fa-instagram fa-beat-fade"></i>
-                            </a>
-                        </li>
-                        <li class="footer__social-item">
-                            <a href="https://www.linkedin.com/in/azimxon_122/" target="_blank" class="footer__social-link">
-                                <i class="fa-brands fa-linkedin-in fa-beat-fade"></i>
-                            </a>
-                        </li>
-                        <li class="footer__social-item">
-                            <a href="https://github.com/azimxondev" target="_blank" class="footer__social-link">
-                                <i class="fa-brands fa-github fa-fade"></i>
-                            </a>
-                        </li>
-                        <li class="footer__social-item">
-                            <a href="https://twitter.com/azimxondev" target="_blank" class="footer__social-link">
-                                <i class="fa-brands fa-square-x-twitter fa-fade"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
+            <div class="footer__content">
+                <a href="#hero" class="nav__brand footer__brand">
+                    <i class="ri-terminal-box-fill"></i><span>Azimxon</span>
+                </a>
+                <h4 class="footer__title" data-i18n="footer.follow">Follow Me</h4>
+                <ul class="footer__social-list">
+                    <li>
+                        <a href="mailto:azimxonergashev122@gmail.com" class="footer__social-link" aria-label="Email">
+                            <i class="fa-regular fa-envelope"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://t.me/azimxon_122" target="_blank" rel="noopener" class="footer__social-link"
+                            aria-label="Telegram">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://instagram.com/azimxon_122" target="_blank" rel="noopener"
+                            class="footer__social-link" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <!-- TODO: o'z GitHub username'ingni qo'y -->
+                        <a href="https://github.com/azimxon-ergashev" target="_blank" rel="noopener"
+                            class="footer__social-link" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/azimxon-ergashev" target="_blank" rel="noopener"
+                            class="footer__social-link" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <p class="footer__copyright">&copy; 2025 Azimkhan. All Rights Reserved</p>
+            <p class="footer__copyright">&copy; <span id="year">2025</span> Azimxon. <span data-i18n="footer.rights">All
+                    Rights Reserved.</span></p>
         </div>
     </footer>
-
-    <!--=================== SwiperJS  ====================-->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
     <!--=================== ScrollReveal ==================-->
     <script src="https://unpkg.com/scrollreveal"></script>
 
     <!--=================== Main JS ====================-->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=2"></script>
 </body>
 
 </html>
-
-<script>
-    const typewriterTexts = [
-      "Frontend Web Developer",
-      "Software Engineer",
-      "Full Stack Developer",
-      "Creative Problem Solver",
-    ];
-
-    let currentTextIndex = 0;
-    let charIndex = 0;
-
-    const typewriterElement = document.getElementById("typewriter");
-
-    function typeEffect() {
-      // Get the current text
-      const currentText = typewriterTexts[currentTextIndex];
-
-      // Update the text content with the next character
-      typewriterElement.textContent = currentText.slice(0, charIndex);
-
-      // Increment the character index
-      charIndex++;
-
-      // If the full text has been typed, pause and then switch to the next text
-      if (charIndex > currentText.length) {
-        setTimeout(() => {
-          charIndex = 0; // Reset character index
-          currentTextIndex = (currentTextIndex + 1) % typewriterTexts.length; // Move to next text
-        }, 2000); // Pause before switching
-      }
-
-      // Continue typing every 100ms
-      setTimeout(typeEffect, 100);
-    }
-
-    // Start the typewriter effect
-    typeEffect();
-</script>
