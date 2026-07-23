@@ -326,24 +326,50 @@ body {
 }
 
 @media screen and (max-width: 968px) {
-  .nav__list {
-    flex-direction: column;
-    align-items: center;
-    row-gap: 3.5rem;
+  .nav {
+    position: relative;
   }
 
-  .nav__menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: var(--zindex-menu);
+  .nav__list {
     flex-direction: column;
-    justify-content: center;
-    background-color: var(--color-bg-primary);
+    align-items: stretch;
+    row-gap: 0.4rem;
+  }
+
+  .nav__item {
+    width: 100%;
+  }
+
+  .nav__link {
+    display: block;
+    padding: 1rem 1.2rem;
+    border-radius: 0.8rem;
+  }
+
+  .nav__link::after {
+    display: none;
+  }
+
+  .nav__link:hover {
+    background-color: var(--color-bg-card);
+  }
+
+  /* Compact dropdown anchored to the top-right, below the nav bar */
+  .nav__menu {
+    position: absolute;
+    top: calc(100% + 1.2rem);
+    right: 0;
+    width: max-content;
+    min-width: 19rem;
+    max-width: calc(100vw - 4rem);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.4rem;
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 1.4rem;
+    box-shadow: var(--box-shadow);
+    padding: 1.6rem;
     display: none;
   }
 
@@ -353,6 +379,7 @@ body {
 
   .lang-switch--menu {
     display: inline-flex;
+    align-self: center;
   }
 
   .lang-switch--top {
@@ -964,8 +991,39 @@ body {
     margin-inline: auto;
   }
 
+  /* Let the hero columns shrink so the code card never overflows the screen */
+  .hero__content,
+  .hero__visual {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Smaller, mobile-friendly code card */
+  .terminal {
+    max-width: 100%;
+  }
+
+  .terminal__bar {
+    padding: 1rem 1.3rem;
+  }
+
+  .terminal__file {
+    font-size: 1.2rem;
+  }
+
+  .terminal__code {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    padding: 1.5rem 1.4rem 1.8rem;
+  }
+
   .contact__card {
     padding: 3.5rem 2.5rem;
+  }
+
+  /* Slightly smaller contact heading on phones */
+  .contact__title {
+    font-size: 2.6rem;
   }
 }
 
