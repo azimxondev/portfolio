@@ -377,13 +377,28 @@ body {
     display: flex;
   }
 
+  /* Language switcher stays OUTSIDE the menu, visible in the top bar */
   .lang-switch--menu {
-    display: inline-flex;
-    align-self: center;
+    display: none;
   }
 
   .lang-switch--top {
-    display: none;
+    display: inline-flex;
+  }
+
+  /* Slightly more compact switcher + spacing so it fits next to the toggle */
+  .nav__actions {
+    gap: 1.2rem;
+  }
+
+  .lang-switch {
+    padding: 0.3rem;
+    gap: 0.2rem;
+  }
+
+  .lang-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 1.2rem;
   }
 
   .nav__toggle {
