@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Azimxon Ergashev — CV</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 16mm 18mm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1a1a1a;
+      background: #ffffff;
+      line-height: 1.5;
+      font-size: 10.5pt;
+    }
+    .header {
+      border-bottom: 2px solid #222222;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .name-block h1 {
+      font-size: 22pt;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #111111;
+      text-transform: uppercase;
+    }
+    .name-block .title {
+      font-size: 12pt;
+      font-weight: 600;
+      color: #3b82f6;
+      margin-top: 2px;
+    }
+    .contact-block {
+      text-align: right;
+      font-size: 9pt;
+      color: #4b5563;
+      line-height: 1.45;
+    }
+    .contact-block a {
+      color: #111827;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .section {
+      margin-bottom: 15px;
+    }
+    .section-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 3px;
+      margin-bottom: 8px;
+    }
+    .summary-text {
+      color: #374151;
+      font-size: 9.8pt;
+      text-align: justify;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      row-gap: 5px;
+      font-size: 9.6pt;
+    }
+    .skills-label {
+      font-weight: 600;
+      color: #111827;
+    }
+    .skills-value {
+      color: #374151;
+    }
+    .item {
+      margin-bottom: 10px;
+    }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+    .item-title {
+      font-weight: 700;
+      font-size: 10pt;
+      color: #111827;
+    }
+    .item-subtitle {
+      font-weight: 500;
+      color: #4b5563;
+      font-size: 9.5pt;
+    }
+    .item-date {
+      font-size: 8.8pt;
+      color: #6b7280;
+      font-family: monospace;
+    }
+    .item-bullets {
+      list-style-type: disc;
+      padding-left: 18px;
+      color: #374151;
+      font-size: 9.4pt;
+    }
+    .item-bullets li {
+      margin-bottom: 2px;
+    }
+    .tech-stack-tag {
+      font-size: 8.8pt;
+      color: #4b5563;
+      font-style: italic;
+      margin-top: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="name-block">
+      <h1>Azimxon Ergashev</h1>
+      <div class="title">Python Backend Developer</div>
+    </div>
+    <div class="contact-block">
+      <div>Tashkent, Uzbekistan</div>
+      <div>Email: <a href="mailto:azimxonergashev122@gmail.com">azimxonergashev122@gmail.com</a></div>
+      <div>Telegram: <a href="https://t.me/azimxon122">@azimxon122</a></div>
+      <div>GitHub: <a href="https://github.com/azimxondev">github.com/azimxondev</a></div>
+      <div>Website: <a href="https://azimxon.uz">azimxon.uz</a></div>
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL SUMMARY -->
+  <div class="section">
+    <div class="section-title">Professional Summary</div>
+    <p class="summary-text">
+      Driven and detail-oriented Python Backend Developer with hands-on experience designing reliable server-side architectures, RESTful APIs, relational databases, and automated Telegram bots. Committed to building scalable solutions using clean code principles, robust error handling, and high-performance database querying.
+    </p>
+  </div>
+
+  <!-- TECHNICAL SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skills-label">Languages:</div>
+      <div class="skills-value">Python (Core, OOP, Data Structures & Algorithms)</div>
+
+      <div class="skills-label">Backend Frameworks:</div>
+      <div class="skills-value">Django, Django REST Framework (DRF), Aiogram 3 (Telegram Bot API)</div>
+
+      <div class="skills-label">Databases & ORM:</div>
+      <div class="skills-value">PostgreSQL, SQLite, Django ORM, SQL Query Optimization</div>
+
+      <div class="skills-label">API & Architecture:</div>
+      <div class="skills-value">RESTful APIs, JSON, Authentication (Token/JWT), Webhooks, MVC/MVT</div>
+
+      <div class="skills-label">Tools & Versioning:</div>
+      <div class="skills-value">Git, GitHub (Clean branching & commits), Linux CLI basics, Postman</div>
+    </div>
+  </div>
+
+  <!-- FEATURED PROJECTS -->
+  <div class="section">
+    <div class="section-title">Featured Projects</div>
+
+    <!-- Auto Sklad -->
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-title">Auto Sklad — Warehouse & Auto Parts Management System</span>
+          <span class="item-subtitle">| Lead Backend Developer</span>
+        </div>
+        <span class="item-date">2024</span>
+      </div>
+      <div class="tech-stack-tag">Technologies: Python, Django, Django REST Framework, PostgreSQL, Aiogram 3</div>
+      <ul class="item-bullets">
+        <li>Engineered a centralized backend system to catalog, filter, and track thousands of automotive spare parts with real-time inventory management.</li>
+        <li>Developed high-throughput RESTful endpoints using Django REST Framework for category classification, SKU searches, and stock operations.</li>
+        <li>Implemented interactive Telegram Bot integration (@avtoozapchast_bot) utilizing Aiogram 3 for instant customer inquiries, catalog browsing, and notification workflows.</li>
+        <li>Structured normalized relational database schemas in PostgreSQL with indexes to ensure fast search retrieval times and ACID transaction safety.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EDUCATION & PROFESSIONAL TRAINING -->
+  <div class="section">
+    <div class="section-title">Education & Training</div>
+
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-title">University</span>
+          <span class="item-subtitle">— Undergraduate Degree</span>
+        </div>
+        <span class="item-date">Present</span>
+      </div>
+      <ul class="item-bullets">
+        <li>Higher education curriculum focused on computer science fundamentals, analytical problem-solving, and software principles.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-title">Mohirdev Praktikum</span>
+          <span class="item-subtitle">— Intensive Python Backend & Web Development</span>
+        </div>
+        <span class="item-date">2024 - Present</span>
+      </div>
+      <ul class="item-bullets">
+        <li>Practical mastery of Django, DRF, database design, API security, and production deployment standards.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-title">Sariq Dev Python</span>
+          <span class="item-subtitle">— Core Python & Algorithms</span>
+        </div>
+        <span class="item-date">2023 - Present</span>
+      </div>
+      <ul class="item-bullets">
+        <li>Deep dive into Python syntax, object-oriented programming (OOP), algorithmic thinking, and clean code hygiene.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="section">
+    <div class="section-title">Languages</div>
+    <div class="skills-grid">
+      <div class="skills-label">Uzbek:</div>
+      <div class="skills-value">Native</div>
+      <div class="skills-label">English:</div>
+      <div class="skills-value">Technical proficiency (Documentation, code review & development)</div>
+      <div class="skills-label">Russian:</div>
+      <div class="skills-value">Working proficiency</div>
+    </div>
+  </div>
+
+</body>
+</html>

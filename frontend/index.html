@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AEDEV — Azimxon Ergashev | Python Backend Developer</title>
+
+  <!-- Favicon: Solid Black Circle with Centered White 'A' -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#080808">
+
+  <!-- SEO -->
+  <meta name="description" content="Azimxon Ergashev — Python Backend Developer. I build clean, reliable, and scalable backend solutions.">
+  <meta name="author" content="Azimxon Ergashev">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://azimxon.uz">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AEDEV — Azimxon Ergashev | Python Backend Developer">
+  <meta property="og:description" content="I build clean, reliable, and scalable backend solutions.">
+  <meta property="og:url" content="https://azimxon.uz">
+
+  <!-- Google Fonts: Space Grotesk + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Thin Vertical Grid Lines -->
+  <div class="grid-lines" aria-hidden="true">
+    <div class="grid-line"></div>
+    <div class="grid-line"></div>
+    <div class="grid-line"></div>
+    <div class="grid-line"></div>
+    <div class="grid-line"></div>
+    <div class="grid-line"></div>
+  </div>
+
+  <!-- ======================================================================
+       NAVBAR (Oval Floating Navbar + Theme & Language)
+       ====================================================================== -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#hero" class="brand" aria-label="AEDEV — Azimxon Ergashev">
+        <span>AEDEV</span>
+      </a>
+
+      <!-- Oval Navigation Pill -->
+      <nav class="nav-pill" id="nav-pill" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active" data-i18n="nav.home">Home</a></li>
+          <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+          <li><a href="#portfolio" class="nav-link" data-i18n="nav.portfolio">Portfolio</a></li>
+          <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Controls: Language Switcher + Day/Night Theme Toggle -->
+      <div class="nav-controls">
+        <!-- Language Switcher -->
+        <div class="lang-switch" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="uz">UZ</button>
+          <button type="button" class="lang-btn" data-lang="ru">RU</button>
+        </div>
+
+        <!-- Day/Night Toggle Button -->
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle light and dark theme">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg class="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg class="moon-icon" style="display: none;" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       MAIN CONTENT
+       ====================================================================== -->
+  <main id="main-content">
+
+    <!-- 1. HERO SECTION (100% CENTERED, BALANCED TYPOGRAPHY) -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="system-status-pill" aria-label="System status">
+            <span class="status-pulse-dot"></span>
+            <span class="status-text" data-i18n="status.system">All Systems Operational</span>
+            <span class="status-sep">•</span>
+            <span class="status-uptime">99.9% Uptime</span>
+          </div>
+
+          <div class="hero-eyebrow">AZIMXON ERGASHEV</div>
+          <h1 class="hero-heading">
+            <span class="heading-line-1">Python Backend</span>
+            <span class="heading-line-2">Developer</span>
+          </h1>
+          <p class="hero-subtext" data-i18n="hero.subtext">
+            I build clean, reliable, and scalable backend solutions.
+          </p>
+          <div class="hero-buttons">
+            <a href="#portfolio" class="btn btn-primary" data-i18n="hero.btnProjects">View Projects</a>
+            <a href="assets/Azimxon_Ergashev_CV.pdf" download="Azimxon_Ergashev_CV.pdf" class="btn btn-cv" data-i18n="hero.btnCV">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Download CV</span>
+            </a>
+            <a href="#contact" class="btn btn-secondary" data-i18n="hero.btnContact">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT SECTION (Biography + Education & Experience) -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title" data-i18n="about.title">About</h2>
+        <p class="about-text" data-i18n="about.text">
+          I am a Python Backend Developer focused on building practical, scalable, and clean backend systems. I enjoy turning ideas into reliable web solutions with clear architecture and real functionality.
+        </p>
+
+        <!-- Education & Experience Grid (Image 2 Inspired) -->
+        <div class="edu-exp-grid">
+          <!-- Education Card -->
+          <div class="edu-card">
+            <div class="edu-card-title">
+              <span data-i18n="edu.title">Education</span>
+            </div>
+
+            <div class="timeline-list">
+              <!-- University -->
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <span class="timeline-heading" data-i18n="edu.uni">University</span>
+                <span class="timeline-period" data-i18n="edu.uniPeriod">Present</span>
+                <p class="timeline-desc" data-i18n="edu.uniDesc">Currently studying</p>
+              </div>
+
+              <!-- Online Platform: Sariq Dev -->
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <span class="timeline-heading">Sariq Dev Python</span>
+                <span class="timeline-period" data-i18n="edu.sariqdevPeriod">2023 - Present</span>
+                <p class="timeline-desc" data-i18n="edu.sariqdev">Python Programming (Core & Advanced algorithms)</p>
+              </div>
+
+              <!-- Online Platform: Mohirdev -->
+              <div class="timeline-item">
+                <span class="timeline-dot"></span>
+                <span class="timeline-heading">Mohirdev Praktikum</span>
+                <span class="timeline-period" data-i18n="edu.mohirdevPeriod">2024 - Present</span>
+                <p class="timeline-desc" data-i18n="edu.mohirdev">Python Backend & Web Development platform</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Card (Soon status overlay) -->
+          <div class="exp-card">
+            <div class="exp-card-title">
+              <span data-i18n="exp.title">Experience</span>
+            </div>
+
+            <div class="exp-body">
+              <div class="exp-empty-content">
+                <p class="exp-empty-text" data-i18n="exp.desc">
+                  Commercial backend engineering experience in progress. Currently focusing on real-world practical projects, clean architecture, and systems engineering.
+                </p>
+                <span class="exp-empty-hint" data-i18n="exp.hint">// Production projects featured below</span>
+              </div>
+              <div class="exp-soon-overlay">
+                <span class="status-badge-soon" data-i18n="exp.soon">SOON</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SKILLS SECTION (Clean 8-item Backend list) -->
+    <section class="section" id="skills">
+      <div class="container">
+        <h2 class="section-title" data-i18n="skills.title">Skills</h2>
+        <div class="skills-grid" aria-label="Technical skills list">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Django</span>
+          <span class="skill-tag">Django REST Framework</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">SQLite</span>
+          <span class="skill-tag">REST API</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">GitHub</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FEATURED PROJECT SECTION -->
+    <section class="section" id="portfolio">
+      <div class="container">
+        <h2 class="section-title" data-i18n="project.title">Featured Project</h2>
+        <article class="project-card">
+          <h3 class="project-name">Auto Sklad</h3>
+          <p class="project-desc" data-i18n="project.desc">
+            Auto Sklad is a backend-focused project built for managing auto parts and related workflows. It highlights practical architecture, clean logic, and real project structure.
+          </p>
+          <ul class="project-features-list">
+            <li class="project-feature-item">
+              <span class="feature-icon" aria-hidden="true">🔹</span>
+              <span class="feature-text" data-i18n="project.feat1">Fast search by spare part SKU/article code and part name</span>
+            </li>
+            <li class="project-feature-item">
+              <span class="feature-icon" aria-hidden="true">🔹</span>
+              <span class="feature-text" data-i18n="project.feat2">Real-time warehouse stock & inventory check via Telegram bot</span>
+            </li>
+            <li class="project-feature-item">
+              <span class="feature-icon" aria-hidden="true">🔹</span>
+              <span class="feature-text" data-i18n="project.feat3">Secure Django admin panel for catalog, parts, and pricing management</span>
+            </li>
+          </ul>
+          <div class="project-stack">Python, Django, DRF, PostgreSQL, Aiogram</div>
+          <div class="project-actions">
+            <a href="https://t.me/avtoozapchast_bot" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="project.btn">
+              View Project
+            </a>
+            <a href="https://github.com/azimxondev/avtoozapchast" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="project.githubBtn">
+              GitHub Repo
+            </a>
+          </div>
+        </article>
+
+        <!-- Engineering & Git Workflow Standards Card -->
+        <div class="git-standards-card">
+          <div class="git-card-header">
+            <div class="git-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>GitHub Workflow & Clean Code</span>
+            </div>
+            <a href="https://github.com/azimxondev" target="_blank" rel="noopener noreferrer" class="git-profile-link">
+              @azimxondev ↗
+            </a>
+          </div>
+          <div class="git-metrics-grid">
+            <div class="git-metric-item">
+              <span class="git-metric-title" data-i18n="git.commits">Commit Hygiene</span>
+              <span class="git-metric-desc" data-i18n="git.commitsDesc">Conventional commits: feat, fix, refactor, docs</span>
+            </div>
+            <div class="git-metric-item">
+              <span class="git-metric-title" data-i18n="git.branching">Git Branching</span>
+              <span class="git-metric-desc" data-i18n="git.branchingDesc">Feature branches, clean PRs & code review</span>
+            </div>
+            <div class="git-metric-item">
+              <span class="git-metric-title" data-i18n="git.clean">Architecture</span>
+              <span class="git-metric-desc" data-i18n="git.cleanDesc">PEP 8 standards, modular apps & robust error handling</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE BACKEND TERMINAL (CLI) -->
+    <section class="section" id="terminal">
+      <div class="container">
+        <div class="terminal-title-area">
+          <h2 class="section-title" data-i18n="term.title">Backend Console</h2>
+          <p class="terminal-desc" data-i18n="term.desc">Interactive CLI environment. Run commands to inspect backend runtime & developer profile.</p>
+        </div>
+
+        <div class="terminal-window">
+          <div class="terminal-topbar">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="terminal-title">bash — azimxon@aedev:~</div>
+            <button type="button" class="term-clear-btn" id="term-clear-btn" title="Clear console">clear</button>
+          </div>
+
+          <div class="terminal-body" id="term-output">
+            <div class="term-line term-welcome">// AEDEV v2.4.0 (Python 3.12 Backend Server)</div>
+            <div class="term-line term-hint">// Type a command or click one of the quick actions below:</div>
+            <div class="term-chips">
+              <button type="button" class="term-chip" data-cmd="help">help</button>
+              <button type="button" class="term-chip" data-cmd="about">about</button>
+              <button type="button" class="term-chip" data-cmd="skills">skills</button>
+              <button type="button" class="term-chip" data-cmd="project">project</button>
+              <button type="button" class="term-chip" data-cmd="contact">contact</button>
+            </div>
+          </div>
+
+          <div class="terminal-input-row">
+            <span class="term-prompt">azimxon@server:~$</span>
+            <input type="text" id="term-input" class="term-input" placeholder="Type 'help' or 'skills'..." autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CONTACT SECTION (Screenshot 1: 2-Column Send a Message & Profiles Layout) -->
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 class="section-title" data-i18n="contact.title">Contact</h2>
+        <p class="contact-desc" data-i18n="contact.desc">
+          Have a project, collaboration, or idea in mind? Let’s connect.
+        </p>
+
+        <div class="contact-grid">
+          <!-- Left Column: Send a message Form -->
+          <div class="contact-form-card">
+            <h3 class="form-card-title" data-i18n="form.cardTitle">Send a message</h3>
+            <form class="contact-form-inner" id="direct-contact-form" novalidate>
+              <!-- Anti-spam Honeypot (hidden from real users) -->
+              <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+                <input type="text" name="hp_website" id="hp-website" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="form-item">
+                <label for="input-name" data-i18n="form.name">Full Name</label>
+                <input type="text" id="input-name" name="full_name" placeholder="Enter your full name" required minlength="2" maxlength="100" data-i18n-placeholder="form.namePlaceholder" autocomplete="name">
+                <span class="field-error-msg" id="name-error" style="display:none;"></span>
+              </div>
+
+              <div class="form-item">
+                <label for="input-phone" data-i18n="form.phone">Phone Number</label>
+                <input type="tel" id="input-phone" name="phone" placeholder="+998 90 123 45 67" required minlength="7" maxlength="25" data-i18n-placeholder="form.phonePlaceholder" autocomplete="tel">
+                <span class="field-error-msg" id="phone-error" style="display:none;"></span>
+              </div>
+
+              <div class="form-item">
+                <label for="input-message" data-i18n="form.message">Message / Reason for Contact</label>
+                <textarea id="input-message" name="message" placeholder="Tell me why you're contacting me..." required minlength="5" maxlength="3000" data-i18n-placeholder="form.msgPlaceholder"></textarea>
+                <span class="field-error-msg" id="message-error" style="display:none;"></span>
+              </div>
+
+              <button type="submit" class="btn-form-send" id="btn-submit" data-i18n="form.send">Send Message</button>
+              <div class="form-status-msg" id="form-status-msg" style="display:none;"></div>
+            </form>
+          </div>
+
+          <!-- Right Column: Info Cards Stack (Screenshot 1: Email, Telegram, GitHub, LinkedIn, WhatsApp) -->
+          <div class="contact-cards-stack">
+            <!-- Email -->
+            <a href="mailto:azimxonergashev122@gmail.com" class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.259l4.616-3.741v9.452l-4.616-5.711z"/></svg>
+              </div>
+              <div class="info-card-text">
+                <span class="info-card-title">Email</span>
+                <span class="info-card-sub">azimxonergashev122@gmail.com</span>
+              </div>
+            </a>
+
+            <!-- Telegram -->
+            <a href="https://t.me/azimxon122" target="_blank" rel="noopener noreferrer" class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.942z"/></svg>
+              </div>
+              <div class="info-card-text">
+                <span class="info-card-title">Telegram</span>
+                <span class="info-card-sub">@azimxon122</span>
+              </div>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/azimxondev" target="_blank" rel="noopener noreferrer" class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </div>
+              <div class="info-card-text">
+                <span class="info-card-title">GitHub</span>
+                <span class="info-card-sub">@azimxondev</span>
+              </div>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/azimxon-ergashev-732b803a9/" target="_blank" rel="noopener noreferrer" class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </div>
+              <div class="info-card-text">
+                <span class="info-card-title">LinkedIn</span>
+                <span class="info-card-sub">Azimxon Ergashev</span>
+              </div>
+            </a>
+
+            <!-- WhatsApp Button -->
+            <a href="https://wa.me/?text=Assalomu%20alaykum%20Azimxon,%20portfoliongiz%20orqali%20yozmoqdaman" target="_blank" rel="noopener noreferrer" class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              </div>
+              <div class="info-card-text">
+                <span class="info-card-title">WhatsApp</span>
+                <span class="info-card-sub" data-i18n="contact.whatsappSub">WhatsApp Direct</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div class="toast-notice" id="toast-notice">
+    Xabaringiz qabul qilindi! Tez orada siz bilan bog'lanamiz.
+  </div>
+
+  <!-- ======================================================================
+       FOOTER
+       ====================================================================== -->
+  <footer class="footer">
+    <div class="container" data-i18n="footer.rights">
+      &copy; 2026 AEDEV. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

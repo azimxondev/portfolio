@@ -9,14 +9,6 @@
 (function () {
   'use strict';
 
-  /* ------------------------------------------------------------------------
-     TELEGRAM BOT CONFIGURATION
-     ------------------------------------------------------------------------ */
-  const TG_CONFIG = {
-    botUsername: 'ae_contact_bot',
-    botToken: '',
-    chatId: ''
-  };
 
   /* ------------------------------------------------------------------------
      1. MULTILINGUAL DICTIONARY (EN / UZ / RU)
@@ -76,13 +68,19 @@
       'contact.whatsappSub': 'WhatsApp Direct',
 
       'form.cardTitle': 'Send a message',
-      'form.name': 'Name',
-      'form.namePlaceholder': 'Your name',
+      'form.name': 'Full Name',
+      'form.namePlaceholder': 'Enter your full name',
       'form.phone': 'Phone Number',
-      'form.phonePlaceholder': '+998 98 123 45 67',
-      'form.message': 'Message',
-      'form.msgPlaceholder': 'Write your message...',
-      'form.send': 'Send',
+      'form.phonePlaceholder': '+998 90 123 45 67',
+      'form.message': 'Message / Reason for Contact',
+      'form.msgPlaceholder': 'Tell me why you\'re contacting me...',
+      'form.send': 'Send Message',
+      'form.sending': 'Sending your message...',
+      'form.success': 'Message sent successfully!',
+      'form.error': 'Failed to send. Please try again.',
+      'form.errName': 'Please enter your full name (at least 2 characters).',
+      'form.errPhone': 'Please enter a valid phone number (e.g. +998 90 123 45 67).',
+      'form.errMessage': 'Please enter a message (at least 5 characters).',
 
       'toast.success': 'Your message has been received! We will contact you shortly.',
       'footer.rights': '© 2026 AEDEV. All rights reserved.'
@@ -142,13 +140,19 @@
       'contact.whatsappSub': 'Toʻgʻridan-toʻgʻri chat',
 
       'form.cardTitle': 'Xabar yuborish',
-      'form.name': 'Ism',
-      'form.namePlaceholder': 'Ismingiz',
+      'form.name': 'Toʻliq ism',
+      'form.namePlaceholder': 'Toʻliq ismingizni kiriting',
       'form.phone': 'Telefon raqam',
-      'form.phonePlaceholder': '+998 98 123 45 67',
-      'form.message': 'Xabar',
-      'form.msgPlaceholder': 'Xabaringizni yozing (masalan: portfolio yoki backend boʻyicha)...',
-      'form.send': 'Yuborish',
+      'form.phonePlaceholder': '+998 90 123 45 67',
+      'form.message': 'Xabar / Bogʻlanish sababi',
+      'form.msgPlaceholder': 'Nima maqsadda bogʻlanayotganingizni yozing...',
+      'form.send': 'Xabar yuborish',
+      'form.sending': 'Xabaringiz yuborilmoqda...',
+      'form.success': 'Xabaringiz muvaffaqiyatli yuborildi! Tez orada siz bilan bogʻlanaman.',
+      'form.error': 'Xabarni yuborishda xatolik yuz berdi. Iltimos, qayta urinib koʻring.',
+      'form.errName': 'Iltimos, toʻliq ismingizni kiriting (kamida 2 ta belgi).',
+      'form.errPhone': 'Iltimos, toʻgʻri telefon raqam kiriting (masalan: +998 90 123 45 67).',
+      'form.errMessage': 'Iltimos, xabaringizni yozing (kamida 5 ta belgi).',
 
       'toast.success': 'Xabaringiz qabul qilindi! Tez orada siz bilan bogʻlanamiz.',
       'footer.rights': '© 2026 AEDEV. Barcha huquqlar himoyalangan.'
@@ -208,13 +212,19 @@
       'contact.whatsappSub': 'Прямой чат',
 
       'form.cardTitle': 'Отправить сообщение',
-      'form.name': 'Имя',
-      'form.namePlaceholder': 'Ваше имя',
+      'form.name': 'Полное имя',
+      'form.namePlaceholder': 'Введите ваше полное имя',
       'form.phone': 'Номер телефона',
-      'form.phonePlaceholder': '+998 98 123 45 67',
-      'form.message': 'Сообщение',
-      'form.msgPlaceholder': 'Напишите ваше сообщение...',
-      'form.send': 'Отправить',
+      'form.phonePlaceholder': '+998 90 123 45 67',
+      'form.message': 'Сообщение / Причина обращения',
+      'form.msgPlaceholder': 'Расскажите о вашем проекте или причине обращения...',
+      'form.send': 'Отправить сообщение',
+      'form.sending': 'Отправка вашего сообщения...',
+      'form.success': 'Ваше сообщение успешно отправлено! Я свяжусь с вами в ближайшее время.',
+      'form.error': 'Не удалось отправить сообщение. Пожалуйста, попробуйте еще раз.',
+      'form.errName': 'Пожалуйста, введите ваше полное имя (минимум 2 символа).',
+      'form.errPhone': 'Пожалуйста, введите корректный номер телефона (например: +998 90 123 45 67).',
+      'form.errMessage': 'Пожалуйста, напишите сообщение (минимум 5 символов).',
 
       'toast.success': 'Ваше сообщение принято! Скоро свяжемся с вами.',
       'footer.rights': '© 2026 AEDEV. Все права защищены.'
@@ -353,6 +363,7 @@
     const toastNotice = document.getElementById('toast-notice');
 
     function showToast(msg) {
+      if (!toastNotice) return;
       toastNotice.textContent = msg;
       toastNotice.classList.add('show');
       setTimeout(() => {
@@ -361,42 +372,168 @@
     }
 
     if (contactForm) {
+      const nameInput = document.getElementById('input-name');
+      const phoneInput = document.getElementById('input-phone');
+      const messageInput = document.getElementById('input-message');
+      const hpInput = document.getElementById('hp-website');
+      const submitBtn = document.getElementById('btn-submit');
+      const statusMsg = document.getElementById('form-status-msg');
+
+      const nameError = document.getElementById('name-error');
+      const phoneError = document.getElementById('phone-error');
+      const messageError = document.getElementById('message-error');
+
+      function clearErrors() {
+        if (nameError) { nameError.style.display = 'none'; nameError.textContent = ''; }
+        if (phoneError) { phoneError.style.display = 'none'; phoneError.textContent = ''; }
+        if (messageError) { messageError.style.display = 'none'; messageError.textContent = ''; }
+        if (statusMsg) {
+          statusMsg.style.display = 'none';
+          statusMsg.className = 'form-status-msg';
+          statusMsg.textContent = '';
+        }
+      }
+
+      function getTranslation(key, fallback) {
+        const curLang = localStorage.getItem('site_lang') || 'en';
+        return (translations[curLang] && translations[curLang][key]) || fallback;
+      }
+
+      [nameInput, phoneInput, messageInput].forEach(inp => {
+        if (inp) {
+          inp.addEventListener('input', () => {
+            clearErrors();
+          });
+        }
+      });
+
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        clearErrors();
 
-        const name = document.getElementById('input-name').value.trim();
-        const phone = document.getElementById('input-phone').value.trim();
-        const message = document.getElementById('input-message').value.trim();
+        const nameVal = (nameInput ? nameInput.value : '').trim();
+        const phoneVal = (phoneInput ? phoneInput.value : '').trim();
+        const messageVal = (messageInput ? messageInput.value : '').trim();
+        const hpVal = (hpInput ? hpInput.value : '').trim();
 
-        const formattedText = 
-`📩 Yangi murojaat (azimxon.uz):
-👤 Ism: ${name}
-📞 Tel: ${phone}
-💬 Xabar: ${message || 'Kiritilmadi'}`;
+        // Client-side Validation
+        let hasError = false;
 
-        if (TG_CONFIG.botToken && TG_CONFIG.chatId) {
-          try {
-            await fetch(`https://api.telegram.org/bot${TG_CONFIG.botToken}/sendMessage`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                chat_id: TG_CONFIG.chatId,
-                text: formattedText
-              })
-            });
-          } catch (err) {
-            console.error('Telegram API error:', err);
+        if (!nameVal || nameVal.length < 2) {
+          if (nameError) {
+            nameError.textContent = getTranslation('form.errName', 'Please enter your full name (at least 2 characters).');
+            nameError.style.display = 'block';
           }
+          hasError = true;
         }
 
-        const encodedMsg = encodeURIComponent(formattedText);
-        const tgUrl = `https://t.me/${TG_CONFIG.botUsername}?text=${encodedMsg}`;
+        // Phone Validation: numbers, spaces, +, -, (), . between 7 and 15 digits
+        const phoneDigits = phoneVal.replace(/\D/g, '');
+        const phoneValidChars = /^\+?[0-9\s\-\(\)\.]+$/.test(phoneVal);
+        if (!phoneVal || !phoneValidChars || phoneDigits.length < 7 || phoneDigits.length > 15) {
+          if (phoneError) {
+            phoneError.textContent = getTranslation('form.errPhone', 'Please enter a valid phone number (e.g. +998 90 123 45 67).');
+            phoneError.style.display = 'block';
+          }
+          hasError = true;
+        }
 
-        window.open(tgUrl, '_blank');
-        contactForm.reset();
+        if (!messageVal || messageVal.length < 5) {
+          if (messageError) {
+            messageError.textContent = getTranslation('form.errMessage', 'Please enter a message (at least 5 characters).');
+            messageError.style.display = 'block';
+          }
+          hasError = true;
+        }
 
-        const curLang = localStorage.getItem('site_lang') || 'en';
-        showToast((translations[curLang] && translations[curLang]['toast.success']) || 'Xabaringiz qabul qilindi!');
+        if (hasError) return;
+
+        // UI State: Sending ("Sending your message...")
+        submitBtn.disabled = true;
+        submitBtn.classList.remove('state-success', 'state-error');
+        submitBtn.classList.add('state-sending');
+        submitBtn.textContent = getTranslation('form.sending', 'Sending your message...');
+
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              full_name: nameVal,
+              phone: phoneVal,
+              message: messageVal,
+              hp_website: hpVal
+            })
+          });
+
+          const data = await response.json().catch(() => ({}));
+          submitBtn.classList.remove('state-sending');
+
+          if (response.ok && data.success) {
+            // UI State: Success ("Your message has been sent successfully! I'll get back to you soon.")
+            const successText = getTranslation('form.success', "Message sent successfully!");
+            submitBtn.classList.add('state-success');
+            submitBtn.textContent = successText;
+
+            if (statusMsg) {
+              statusMsg.textContent = successText;
+              statusMsg.className = 'form-status-msg status-success';
+              statusMsg.style.display = 'block';
+            }
+
+            showToast(successText);
+            contactForm.reset();
+
+            setTimeout(() => {
+              submitBtn.classList.remove('state-success');
+              submitBtn.textContent = getTranslation('form.send', 'Send Message');
+              submitBtn.disabled = false;
+              if (statusMsg) statusMsg.style.display = 'none';
+            }, 5000);
+
+          } else {
+            // UI State: Error ("Failed to send your message. Please try again.")
+            const errorText = getTranslation('form.error', 'Failed to send. Please try again.');
+            submitBtn.classList.add('state-error');
+            submitBtn.textContent = errorText;
+
+            if (statusMsg) {
+              statusMsg.textContent = errorText;
+              statusMsg.className = 'form-status-msg status-error';
+              statusMsg.style.display = 'block';
+            }
+
+            showToast(errorText);
+
+            setTimeout(() => {
+              submitBtn.classList.remove('state-error');
+              submitBtn.textContent = getTranslation('form.send', 'Send Message');
+              submitBtn.disabled = false;
+            }, 4000);
+          }
+        } catch (networkErr) {
+          console.error('Contact submit error:', networkErr);
+          submitBtn.classList.remove('state-sending');
+          const networkErrorText = getTranslation('form.error', 'Failed to send. Please try again.');
+          submitBtn.classList.add('state-error');
+          submitBtn.textContent = networkErrorText;
+
+          if (statusMsg) {
+            statusMsg.textContent = networkErrorText;
+            statusMsg.className = 'form-status-msg status-error';
+            statusMsg.style.display = 'block';
+          }
+
+          showToast(networkErrorText);
+
+          setTimeout(() => {
+            submitBtn.classList.remove('state-error');
+            submitBtn.textContent = getTranslation('form.send', 'Send Message');
+            submitBtn.disabled = false;
+          }, 4000);
+        }
       });
     }
 

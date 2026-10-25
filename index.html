@@ -338,26 +338,35 @@
         </p>
 
         <div class="contact-grid">
-          <!-- Left Column: Send a message Form (Screenshot 1) -->
+          <!-- Left Column: Send a message Form -->
           <div class="contact-form-card">
             <h3 class="form-card-title" data-i18n="form.cardTitle">Send a message</h3>
-            <form class="contact-form-inner" id="direct-contact-form">
+            <form class="contact-form-inner" id="direct-contact-form" novalidate>
+              <!-- Anti-spam Honeypot (hidden from real users) -->
+              <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+                <input type="text" name="hp_website" id="hp-website" tabindex="-1" autocomplete="off">
+              </div>
+
               <div class="form-item">
-                <label for="input-name" data-i18n="form.name">Name</label>
-                <input type="text" id="input-name" placeholder="Your name" required data-i18n-placeholder="form.namePlaceholder">
+                <label for="input-name" data-i18n="form.name">Full Name</label>
+                <input type="text" id="input-name" name="full_name" placeholder="Enter your full name" required minlength="2" maxlength="100" data-i18n-placeholder="form.namePlaceholder" autocomplete="name">
+                <span class="field-error-msg" id="name-error" style="display:none;"></span>
               </div>
 
               <div class="form-item">
                 <label for="input-phone" data-i18n="form.phone">Phone Number</label>
-                <input type="tel" id="input-phone" placeholder="+998 98 123 45 67" required data-i18n-placeholder="form.phonePlaceholder">
+                <input type="tel" id="input-phone" name="phone" placeholder="+998 90 123 45 67" required minlength="7" maxlength="25" data-i18n-placeholder="form.phonePlaceholder" autocomplete="tel">
+                <span class="field-error-msg" id="phone-error" style="display:none;"></span>
               </div>
 
               <div class="form-item">
-                <label for="input-message" data-i18n="form.message">Message</label>
-                <textarea id="input-message" placeholder="Write your message... (masalan: portfolio yaratish yoki backend xizmati bo'yicha)" required data-i18n-placeholder="form.msgPlaceholder"></textarea>
+                <label for="input-message" data-i18n="form.message">Message / Reason for Contact</label>
+                <textarea id="input-message" name="message" placeholder="Tell me why you're contacting me..." required minlength="5" maxlength="3000" data-i18n-placeholder="form.msgPlaceholder"></textarea>
+                <span class="field-error-msg" id="message-error" style="display:none;"></span>
               </div>
 
-              <button type="submit" class="btn-form-send" id="btn-submit" data-i18n="form.send">Send</button>
+              <button type="submit" class="btn-form-send" id="btn-submit" data-i18n="form.send">Send Message</button>
+              <div class="form-status-msg" id="form-status-msg" style="display:none;"></div>
             </form>
           </div>
 

@@ -861,9 +861,55 @@ body {
   text-align: center;
 }
 
-.btn-form-send:hover {
+.btn-form-send:hover:not(:disabled) {
   opacity: 0.9;
   transform: translateY(-1px);
+}
+
+.btn-form-send:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-form-send.state-success {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+}
+
+.btn-form-send.state-error {
+  background-color: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+.form-status-msg {
+  margin-top: 0.75rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  text-align: center;
+  line-height: 1.4;
+  animation: toastIn 200ms ease;
+}
+
+.form-status-msg.status-success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+
+.form-status-msg.status-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.field-error-msg {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #f87171;
+  margin-top: 0.25rem;
 }
 
 /* Right Contact Cards Stack (Screenshot 1: Email, Telegram, GitHub, etc.) */
@@ -1695,3 +1741,16 @@ body {
 
 
 
+
+/* Sending state subtle animation */
+.btn-form-send.state-sending {
+  background-color: #27272a !important;
+  color: #a1a1aa !important;
+  cursor: wait !important;
+  animation: pulseSending 1.4s ease-in-out infinite;
+}
+
+@keyframes pulseSending {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
