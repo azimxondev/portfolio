@@ -71,15 +71,17 @@
       'form.name': 'Full Name',
       'form.namePlaceholder': 'Enter your full name',
       'form.phone': 'Phone Number',
-      'form.phonePlaceholder': '+998 90 123 45 67',
+      'form.phonePlaceholder': '90 123 45 67 or +998 90 123 45 67',
       'form.message': 'Message / Reason for Contact',
       'form.msgPlaceholder': 'Tell me why you\'re contacting me...',
       'form.send': 'Send Message',
       'form.sending': 'Sending your message...',
+      'form.tryAgain': 'Try Again',
       'form.success': 'Message sent successfully!',
       'form.error': 'Failed to send. Please try again.',
+      'form.serverOffline': 'Cannot connect to server. Please start the backend server (run.bat).',
       'form.errName': 'Please enter your full name (at least 2 characters).',
-      'form.errPhone': 'Please enter a valid phone number (e.g. +998 90 123 45 67).',
+      'form.errPhone': 'Please enter a valid phone number (e.g. 90 123 45 67 or +998 90 123 45 67).',
       'form.errMessage': 'Please enter a message (at least 5 characters).',
 
       'toast.success': 'Your message has been received! We will contact you shortly.',
@@ -143,15 +145,17 @@
       'form.name': 'Toʻliq ism',
       'form.namePlaceholder': 'Toʻliq ismingizni kiriting',
       'form.phone': 'Telefon raqam',
-      'form.phonePlaceholder': '+998 90 123 45 67',
+      'form.phonePlaceholder': '90 123 45 67 yoki +998 90 123 45 67',
       'form.message': 'Xabar / Bogʻlanish sababi',
       'form.msgPlaceholder': 'Nima maqsadda bogʻlanayotganingizni yozing...',
       'form.send': 'Xabar yuborish',
       'form.sending': 'Xabaringiz yuborilmoqda...',
+      'form.tryAgain': 'Qayta urinish',
       'form.success': 'Xabaringiz muvaffaqiyatli yuborildi! Tez orada siz bilan bogʻlanaman.',
       'form.error': 'Xabarni yuborishda xatolik yuz berdi. Iltimos, qayta urinib koʻring.',
+      'form.serverOffline': 'Server bilan aloqa yoʻq. Iltimos, backend serverni (run.bat) ishga tushiring.',
       'form.errName': 'Iltimos, toʻliq ismingizni kiriting (kamida 2 ta belgi).',
-      'form.errPhone': 'Iltimos, toʻgʻri telefon raqam kiriting (masalan: +998 90 123 45 67).',
+      'form.errPhone': 'Iltimos, toʻgʻri telefon raqam kiriting (masalan: 90 123 45 67 yoki +998 90 123 45 67).',
       'form.errMessage': 'Iltimos, xabaringizni yozing (kamida 5 ta belgi).',
 
       'toast.success': 'Xabaringiz qabul qilindi! Tez orada siz bilan bogʻlanamiz.',
@@ -215,15 +219,17 @@
       'form.name': 'Полное имя',
       'form.namePlaceholder': 'Введите ваше полное имя',
       'form.phone': 'Номер телефона',
-      'form.phonePlaceholder': '+998 90 123 45 67',
+      'form.phonePlaceholder': '90 123 45 67 или +998 90 123 45 67',
       'form.message': 'Сообщение / Причина обращения',
       'form.msgPlaceholder': 'Расскажите о вашем проекте или причине обращения...',
       'form.send': 'Отправить сообщение',
       'form.sending': 'Отправка вашего сообщения...',
+      'form.tryAgain': 'Повторить',
       'form.success': 'Ваше сообщение успешно отправлено! Я свяжусь с вами в ближайшее время.',
       'form.error': 'Не удалось отправить сообщение. Пожалуйста, попробуйте еще раз.',
+      'form.serverOffline': 'Не удалось подключиться к серверу. Убедитесь, что сервер (run.bat) запущен.',
       'form.errName': 'Пожалуйста, введите ваше полное имя (минимум 2 символа).',
-      'form.errPhone': 'Пожалуйста, введите корректный номер телефона (например: +998 90 123 45 67).',
+      'form.errPhone': 'Пожалуйста, введите корректный номер телефона (например: 90 123 45 67 или +998 90 123 45 67).',
       'form.errMessage': 'Пожалуйста, напишите сообщение (минимум 5 символов).',
 
       'toast.success': 'Ваше сообщение принято! Скоро свяжемся с вами.',
@@ -407,6 +413,30 @@
         }
       });
 
+      function normalizePhoneNumber(raw) {
+        if (!raw) return '';
+        const digits = raw.replace(/\D/g, '');
+        // If 9 digits (Uzbek number without +998 code, e.g. 881226767 -> +998 88 122 67 67)
+        if (digits.length === 9) {
+          return `+998 ${digits.slice(0, 2)} ${digits.slice(2, 5)} ${digits.slice(5, 7)} ${digits.slice(7, 9)}`;
+        }
+        // If 12 digits starting with 998 (e.g. 998881226767 or +998881226767)
+        if (digits.length === 12 && digits.startsWith('998')) {
+          return `+998 ${digits.slice(3, 5)} ${digits.slice(5, 8)} ${digits.slice(8, 10)} ${digits.slice(10, 12)}`;
+        }
+        return raw.trim();
+      }
+
+      if (phoneInput) {
+        phoneInput.addEventListener('blur', () => {
+          const val = phoneInput.value.trim();
+          const digits = val.replace(/\D/g, '');
+          if (digits.length === 9 || (digits.length === 12 && digits.startsWith('998'))) {
+            phoneInput.value = normalizePhoneNumber(val);
+          }
+        });
+      }
+
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         clearErrors();
@@ -428,11 +458,12 @@
         }
 
         // Phone Validation: numbers, spaces, +, -, (), . between 7 and 15 digits
+        // Uzbek code (+998) is completely optional: accepts 9-digit local numbers, +998 numbers, or international
         const phoneDigits = phoneVal.replace(/\D/g, '');
-        const phoneValidChars = /^\+?[0-9\s\-\(\)\.]+$/.test(phoneVal);
+        const phoneValidChars = /^[0-9\s\-\(\)\+\.]+$/.test(phoneVal);
         if (!phoneVal || !phoneValidChars || phoneDigits.length < 7 || phoneDigits.length > 15) {
           if (phoneError) {
-            phoneError.textContent = getTranslation('form.errPhone', 'Please enter a valid phone number (e.g. +998 90 123 45 67).');
+            phoneError.textContent = getTranslation('form.errPhone', 'Please enter a valid phone number (e.g. 90 123 45 67 or +998 90 123 45 67).');
             phoneError.style.display = 'block';
           }
           hasError = true;
@@ -447,6 +478,9 @@
         }
 
         if (hasError) return;
+
+        // Auto-normalize phone number for clean delivery to backend & Telegram
+        const finalPhone = normalizePhoneNumber(phoneVal);
 
         // UI State: Sending ("Sending your message...")
         submitBtn.disabled = true;
@@ -466,7 +500,7 @@
             },
             body: JSON.stringify({
               full_name: nameVal,
-              phone: phoneVal,
+              phone: finalPhone,
               message: messageVal,
               hp_website: hpVal
             })
@@ -476,10 +510,10 @@
           submitBtn.classList.remove('state-sending');
 
           if (response.ok && data.success) {
-            // UI State: Success ("Your message has been sent successfully! I'll get back to you soon.")
+            // UI State: Success
             const successText = getTranslation('form.success', "Message sent successfully!");
             submitBtn.classList.add('state-success');
-            submitBtn.textContent = successText;
+            submitBtn.textContent = '✓ ' + (currentLang === 'uz' ? 'Yuborildi!' : (currentLang === 'ru' ? 'Отправлено!' : 'Sent!'));
 
             if (statusMsg) {
               statusMsg.textContent = successText;
@@ -495,13 +529,17 @@
               submitBtn.textContent = getTranslation('form.send', 'Send Message');
               submitBtn.disabled = false;
               if (statusMsg) statusMsg.style.display = 'none';
-            }, 5000);
+            }, 4000);
 
           } else {
-            // UI State: Error ("Failed to send your message. Please try again.")
-            const errorText = getTranslation('form.error', 'Failed to send. Please try again.');
-            submitBtn.classList.add('state-error');
-            submitBtn.textContent = errorText;
+            // Server returned an error (e.g. 422, 502, 503, 429)
+            let errorText = data.detail || data.message || getTranslation('form.error', 'Failed to send. Please try again.');
+            if (Array.isArray(data.detail)) {
+              errorText = data.detail.map(d => d.msg || JSON.stringify(d)).join(', ');
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = getTranslation('form.tryAgain', 'Try Again');
 
             if (statusMsg) {
               statusMsg.textContent = errorText;
@@ -512,17 +550,19 @@
             showToast(errorText);
 
             setTimeout(() => {
-              submitBtn.classList.remove('state-error');
               submitBtn.textContent = getTranslation('form.send', 'Send Message');
-              submitBtn.disabled = false;
-            }, 4000);
+            }, 3000);
           }
         } catch (networkErr) {
-          console.error('Contact submit error:', networkErr);
+          console.error('Contact submit network error:', networkErr);
           submitBtn.classList.remove('state-sending');
-          const networkErrorText = getTranslation('form.error', 'Failed to send. Please try again.');
-          submitBtn.classList.add('state-error');
-          submitBtn.textContent = networkErrorText;
+          submitBtn.disabled = false;
+          submitBtn.textContent = getTranslation('form.tryAgain', 'Try Again');
+
+          const networkErrorText = getTranslation(
+            'form.serverOffline',
+            'Cannot connect to server. Please start the backend server (run.bat).'
+          );
 
           if (statusMsg) {
             statusMsg.textContent = networkErrorText;
@@ -533,9 +573,7 @@
           showToast(networkErrorText);
 
           setTimeout(() => {
-            submitBtn.classList.remove('state-error');
             submitBtn.textContent = getTranslation('form.send', 'Send Message');
-            submitBtn.disabled = false;
           }, 4000);
         }
       });

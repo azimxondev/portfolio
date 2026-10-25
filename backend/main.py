@@ -99,6 +99,12 @@ class ContactFormRequest(BaseModel):
         digits = re.sub(r"\D", "", cleaned)
         if not (7 <= len(digits) <= 15):
             raise ValueError("Phone number must contain between 7 and 15 digits.")
+        # If 9 digits provided (Uzbek number without +998, e.g. 881226767 or 901234567)
+        if len(digits) == 9:
+            return f"+998 {digits[:2]} {digits[2:5]} {digits[5:7]} {digits[7:]}"
+        # If 12 digits provided starting with 998 (e.g. 998881226767 or +998881226767)
+        if len(digits) == 12 and digits.startswith("998"):
+            return f"+998 {digits[3:5]} {digits[5:8]} {digits[8:10]} {digits[10:]}"
         return cleaned
 
     @field_validator("message")

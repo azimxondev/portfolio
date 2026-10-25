@@ -186,7 +186,7 @@ def test_contact_success_with_alias_name(mock_send):
         assert data["success"] is True
         mock_send.assert_called_once_with(
             full_name="Azimxon Ergashev",
-            phone="+998901234567",
+            phone="+998 90 123 45 67",
             message="Discussing Python backend development.",
             source="azimxon.uz"
         )
@@ -230,3 +230,40 @@ def test_rate_limiting(mock_send):
         })
         assert blocked_res.status_code == 429
         assert "Too many messages" in blocked_res.json()["detail"]
+
+
+@patch("backend.main.send_telegram_notification", new_callable=AsyncMock)
+def test_contact_phone_without_country_code_normalized(mock_send):
+    """Verify user can enter Uzbek phone without +998 (e.g. 881226767) and it normalizes to +998."""
+    mock_send.return_value = True
+
+    with patch.object(config, "is_telegram_configured", return_value=True):
+        res = client.post("/api/contact", json={
+            "full_name": "Azimxon Ergashev",
+            "phone": "881226767",
+            "message": "Testing local phone number without +998"
+        })
+        assert res.status_code == 200
+        assert res.json()["success"] is True
+        mock_send.assert_called_once()
+        call_kwargs = mock_send.call_args.kwargs
+        assert call_kwargs["phone"] == "+998 88 122 67 67"
+
+
+@patch("backend.main.send_telegram_notification", new_callable=AsyncMock)
+def test_contact_phone_with_998_digits_normalized(mock_send):
+    """Verify user can enter 12 digits (e.g. 998881226767) and it normalizes to +998 format."""
+    mock_send.return_value = True
+
+    with patch.object(config, "is_telegram_configured", return_value=True):
+        res = client.post("/api/contact", json={
+            "full_name": "Azimxon Ergashev",
+            "phone": "+998881226767",
+            "message": "Testing full phone number"
+        })
+        assert res.status_code == 200
+        assert res.json()["success"] is True
+        mock_send.assert_called_once()
+        call_kwargs = mock_send.call_args.kwargs
+        assert call_kwargs["phone"] == "+998 88 122 67 67"
+
