@@ -455,7 +455,11 @@
         submitBtn.textContent = getTranslation('form.sending', 'Sending your message...');
 
         try {
-          const response = await fetch('/api/contact', {
+          const isLocalDevOtherPort = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '8000';
+          const isFileProtocol = window.location.protocol === 'file:';
+          const apiUrl = (isLocalDevOtherPort || isFileProtocol) ? 'http://127.0.0.1:8000/api/contact' : '/api/contact';
+
+          const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
