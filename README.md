@@ -1,44 +1,95 @@
-# Hamza Zaidi's Portfolio Website 🌐
+# AEDEV — Developer Portfolio
 
-Welcome to my portfolio website! This repository contains the source code for my personal website, showcasing my skills, projects, and experiences.
+**Azimxon Ergashev**  
+Python Backend Developer
 
-## Table of Contents
+*Building reliable backend systems with clean code and thoughtful architecture.*
 
-- [About Me](#about-me)
-- [Technologies Used](#technologies-used)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Screenshot](#screenshot)
+[**Live Website**](https://azimxon.uz) · [**GitHub**](https://github.com/azimxondev) · [**Contact**](https://azimxon.uz/#contact)
 
-## About Me
+---
 
-**I'm Hamza Zaidi, a passionate software developer with a background in computer science. I specialize in front-end development, UI/UX design, and full-stack projects. My goal is to create visually appealing and user-friendly websites that enhance the user experience.**
+## Overview
 
-## Technologies Used
+**AEDEV** is my personal developer portfolio, built to showcase my technical skills, software projects, and approach to backend development.
 
-- HTML5
-- CSS3
-- JavaScript
+The website combines a minimalist design with an engineering-focused experience, keeping the emphasis on real projects and practical solutions.
 
 ## Features
 
-- Responsive design
-- Clean and modern UI/UX
-- Smooth animations and transitions
-- Interactive elements
-- Real-time data fetching (if applicable)
-- Cross-browser compatibility
-- SEO optimization
-- Accessibility considerations
+- Minimalist dark and light interface
+- Fully responsive layout
+- Multilingual support — English, Uzbek, Russian
+- Interactive backend-inspired terminal
+- Featured projects and technical skills
+- CV and contact sections
+- Lightweight, framework-free frontend
+
+## Tech Stack
+
+| Category | Technologies |
+|---|---|
+| Portfolio | HTML5, CSS3, JavaScript |
+| Backend | Python, Django, Django REST Framework, FastAPI |
+| Databases | PostgreSQL, SQLite |
+| Development | REST APIs, Git, GitHub |
+
+*The portfolio itself uses HTML, CSS, and JavaScript. Backend technologies listed above represent my development focus and project experience.*
+
+## Featured Project
+
+### Auto Sklad — Inventory & Management System
+
+An automotive spare parts management system combining backend services, inventory tracking, and Telegram integration.
+
+**Key capabilities**
+- Product catalog and inventory management
+- Stock availability and product search
+- Telegram Mini App integration
+- Sales and transaction tracking
+- Role-based administration
+
+**Technologies:** Python · FastAPI · Aiogram 3 · SQL · Telegram Mini Apps
+
+[**Explore Auto Sklad Repository**](https://github.com/azimxondev/avtoozapchast)
 
 ## Getting Started
 
-### Clone the repository: 
-`git clone https://github.com/HamzaZaidiX/My-Portfolio-html-css-js.git`
+Clone the repository:
 
-## [Portfolio Website Click Here =>💁‍♂️🚀](https://hamza-zaidi.netlify.app/)
+```bash
+git clone https://github.com/azimxondev/portfolio.git
+cd portfolio
+```
 
-## Screenshot:
-![image](https://github.com/user-attachments/assets/df8f17d8-f5e6-4ee6-be3e-8d38c66ed6ab)
+Start a local development server:
 
-**Feel free to explore the code and customize it to suit your needs also Like and Give Heart to `[HAMZA ZAIDI](https://github.com/HamzaZaidiX)` ! Happy coding!**
+```bash
+python -m http.server 8000
+```
+
+Open **http://localhost:8000** in your browser.
+
+No frontend build step is required.
+
+## Connect
+
+I'm interested in backend development, practical software projects, and opportunities to learn and collaborate.
+
+- **Website:** [azimxon.uz](https://azimxon.uz)
+- **GitHub:** [azimxondev](https://github.com/azimxondev)
+- **LinkedIn:** [Azimxon Ergashev](https://www.linkedin.com/in/azimxon-ergashev-732b803a9/)
+- **Telegram:** [@azimxon122](https://t.me/azimxon122)
+- **Instagram:** [@azimxon122](https://www.instagram.com/azimxon122/)
+- **X:** [@azimxon122](https://x.com/azimxon122)
+
+## License & Acknowledgments
+
+This repository is distributed under the [MIT License](LICENSE).
+
+The portfolio was originally based on [Hamza Zaidi's Portfolio Template](https://github.com/HamzaZaidiX/My-Portfolio-html-css-js) and has since been customized for AEDEV.
+
+---
+
+**AEDEV** © 2026 — Azimxon Ergashev  
+*Designed with simplicity. Built with purpose.*
