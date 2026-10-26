@@ -15,17 +15,24 @@ class TelegramDeliveryError(Exception):
 def format_contact_message(full_name: str, phone: str, message: str, source: str = "azimxon.uz") -> str:
     """
     Formats the message for Telegram using safe HTML escaping.
-    The exact format matches the specification:
-    📩 NEW AEDEV PORTFOLIO MESSAGE
+    Variant 3 — Ultra Minimal Premium:
 
-    👤 Name: <full_name>
+    <b>AEDEV.</b>
 
-    📞 Phone: <phone>
+    <b>NEW CONTACT REQUEST</b>
+    ━━━━━━━━━━━━━━━━━━━━
 
-    💬 Message:
+    <b>FROM</b>
+    <full_name>
+
+    <b>PHONE</b>
+    <phone>
+
+    <b>MESSAGE</b>
     <message>
 
-    🌐 Source: <source>
+    ━━━━━━━━━━━━━━━━━━━━
+    <i><source> · Portfolio Contact</i>
     """
     safe_name = html.escape(full_name.strip())
     safe_phone = html.escape(phone.strip())
@@ -33,12 +40,17 @@ def format_contact_message(full_name: str, phone: str, message: str, source: str
     safe_source = html.escape(source.strip())
 
     return (
-        f"📩 <b>NEW AEDEV PORTFOLIO MESSAGE</b>\n\n"
-        f"👤 <b>Name:</b> {safe_name}\n\n"
-        f"📞 <b>Phone:</b> {safe_phone}\n\n"
-        f"💬 <b>Message:</b>\n"
+        "<b>AEDEV.</b>\n\n"
+        "<b>NEW CONTACT REQUEST</b>\n"
+        "━━━━━━━━━━━━━━━━━━━━\n\n"
+        "<b>FROM</b>\n"
+        f"{safe_name}\n\n"
+        "<b>PHONE</b>\n"
+        f"{safe_phone}\n\n"
+        "<b>MESSAGE</b>\n"
         f"{safe_message}\n\n"
-        f"🌐 <b>Source:</b> {safe_source}"
+        "━━━━━━━━━━━━━━━━━━━━\n"
+        f"<i>{safe_source} · Portfolio Contact</i>"
     )
 
 

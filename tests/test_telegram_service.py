@@ -10,7 +10,7 @@ from backend.telegram_service import (
 
 
 def test_format_contact_message_escaping():
-    """Scenario 12: Verify safe HTML escaping for user-controlled input."""
+    """Verify Variant 3 Ultra Minimal Premium format and safe HTML escaping."""
     name = '<script>alert("xss")</script> & John'
     phone = '+998 90 123 45 67 <tag>'
     message = '<b>Bold test</b> & "quotes"'
@@ -22,11 +22,15 @@ def test_format_contact_message_escaping():
     assert "&amp; John" in formatted
     assert "&lt;b&gt;Bold test&lt;/b&gt;" in formatted
     assert "&lt;tag&gt;" in formatted
-    assert "📩 <b>NEW AEDEV PORTFOLIO MESSAGE</b>" in formatted
-    assert "👤 <b>Name:</b>" in formatted
-    assert "📞 <b>Phone:</b>" in formatted
-    assert "💬 <b>Message:</b>" in formatted
-    assert "🌐 <b>Source:</b> azimxon.uz" in formatted
+    
+    # Check Variant 3 Ultra Minimal Premium structure
+    assert "<b>AEDEV.</b>" in formatted
+    assert "<b>NEW CONTACT REQUEST</b>" in formatted
+    assert "━━━━━━━━━━━━━━━━━━━━" in formatted
+    assert "<b>FROM</b>" in formatted
+    assert "<b>PHONE</b>" in formatted
+    assert "<b>MESSAGE</b>" in formatted
+    assert "<i>azimxon.uz · Portfolio Contact</i>" in formatted
 
 
 @pytest.mark.asyncio
@@ -52,9 +56,7 @@ async def test_send_telegram_notification_success():
         request=httpx.Request("POST", "https://api.telegram.org")
     )
 
-    with patch.object(config, "is_telegram_configured", return_value=True), \
-         patch.object(config, "TELEGRAM_BOT_TOKEN", "mock_bot_token"), \
-         patch.object(config, "TELEGRAM_CHAT_ID", "123456789"):
+    with patch.object(config, "is_telegram_configured", return_value=True),          patch.object(config, "TELEGRAM_BOT_TOKEN", "mock_bot_token"),          patch.object(config, "TELEGRAM_CHAT_ID", "123456789"):
 
         mock_client = AsyncMock(spec=httpx.AsyncClient)
         mock_client.post.return_value = mock_response
@@ -72,6 +74,7 @@ async def test_send_telegram_notification_success():
         assert call_kwargs["json"]["chat_id"] == "123456789"
         assert "John Smith" in call_kwargs["json"]["text"]
         assert "+998 90 123 45 67" in call_kwargs["json"]["text"]
+        assert "<b>AEDEV.</b>" in call_kwargs["json"]["text"]
 
 
 @pytest.mark.asyncio
@@ -84,9 +87,7 @@ async def test_send_telegram_notification_api_failure():
         request=httpx.Request("POST", "https://api.telegram.org")
     )
 
-    with patch.object(config, "is_telegram_configured", return_value=True), \
-         patch.object(config, "TELEGRAM_BOT_TOKEN", "mock_bot_token"), \
-         patch.object(config, "TELEGRAM_CHAT_ID", "invalid_id"):
+    with patch.object(config, "is_telegram_configured", return_value=True),          patch.object(config, "TELEGRAM_BOT_TOKEN", "mock_bot_token"),          patch.object(config, "TELEGRAM_CHAT_ID", "invalid_id"):
 
         mock_client = AsyncMock(spec=httpx.AsyncClient)
         mock_client.post.return_value = mock_response
