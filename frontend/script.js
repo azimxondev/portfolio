@@ -516,13 +516,14 @@
           const isSuccess = response && (response.ok || response.status === 200 || (data && data.success === true));
 
           submitBtn.classList.remove('state-sending');
+          const currentLanguage = localStorage.getItem('site_lang') || 'en';
 
           if (isSuccess) {
             // UI State: Success (Green)
             const successText = getTranslation('form.success', "Message sent successfully!");
-            submitBtn.classList.remove('state-error');
+            submitBtn.classList.remove('state-error', 'state-sending');
             submitBtn.classList.add('state-success');
-            submitBtn.textContent = '✓ ' + (currentLang === 'uz' ? 'Yuborildi!' : (currentLang === 'ru' ? 'Отправлено!' : 'Sent!'));
+            submitBtn.textContent = '✓ ' + (currentLanguage === 'uz' ? 'Yuborildi!' : (currentLanguage === 'ru' ? 'Отправлено!' : 'Sent!'));
 
             if (statusMsg) {
               statusMsg.className = 'form-status-msg status-success';
@@ -547,10 +548,10 @@
               errorText = data.detail.map(d => d.msg || JSON.stringify(d)).join(', ');
             }
 
-            submitBtn.classList.remove('state-success');
+            submitBtn.classList.remove('state-success', 'state-sending');
             submitBtn.classList.add('state-error');
             submitBtn.disabled = false;
-            submitBtn.textContent = currentLang === 'uz' ? 'Qayta urinish' : 'Try Again';
+            submitBtn.textContent = currentLanguage === 'uz' ? 'Qayta urinish' : 'Try Again';
 
             if (statusMsg) {
               statusMsg.className = 'form-status-msg status-error';
@@ -567,10 +568,11 @@
           }
         } catch (networkErr) {
           console.error('Contact submit network error:', networkErr);
+          const currentLanguage = localStorage.getItem('site_lang') || 'en';
           submitBtn.classList.remove('state-sending', 'state-success');
           submitBtn.classList.add('state-error');
           submitBtn.disabled = false;
-          submitBtn.textContent = currentLang === 'uz' ? 'Qayta urinish' : 'Try Again';
+          submitBtn.textContent = currentLanguage === 'uz' ? 'Qayta urinish' : 'Try Again';
 
           const networkErrorText = getTranslation(
             'form.error',
