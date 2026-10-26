@@ -96,14 +96,25 @@ class ContactFormRequest(BaseModel):
         if not re.match(r"^\+?[0-9\s\-\(\)\.]+$", cleaned):
             raise ValueError("Phone number contains invalid characters.")
         digits = re.sub(r"\D", "", cleaned)
-        if not (7 <= len(digits) <= 15):
-            raise ValueError("Phone number must contain between 7 and 15 digits.")
-        # If 9 digits provided (Uzbek number without +998, e.g. 881226767 or 901234567)
-        if len(digits) == 9:
-            return f"+998 {digits[:2]} {digits[2:5]} {digits[5:7]} {digits[7:]}"
-        # If 12 digits provided starting with 998 (e.g. 998881226767 or +998881226767)
-        if len(digits) == 12 and digits.startswith("998"):
+        
+        # 1. Uzbekistan number with country code (+998...)
+        if digits.startswith("998"):
+            if len(digits) != 12:
+                raise ValueError("Uzbekistan phone number with +998 must contain exactly 12 digits (+998 XX XXX XX XX).")
             return f"+998 {digits[3:5]} {digits[5:8]} {digits[8:10]} {digits[10:]}"
+        
+        # 2. Local Uzbek number without +998 (must be exactly 9 digits, e.g. 901234567, 881226767)
+        if not cleaned.startswith("+"):
+            if len(digits) != 9:
+                if len(digits) < 9:
+                    raise ValueError("Phone number is incomplete. Please enter 9 digits (e.g. 90 123 45 67).")
+                else:
+                    raise ValueError("Phone number has too many digits. Please enter 9 digits (e.g. 90 123 45 67).")
+            return f"+998 {digits[:2]} {digits[2:5]} {digits[5:7]} {digits[7:]}"
+        
+        # 3. International number (starts with +, not 998)
+        if not (10 <= len(digits) <= 15):
+            raise ValueError("International phone number must contain between 10 and 15 digits.")
         return cleaned
 
     @field_validator("message")

@@ -393,6 +393,9 @@
         if (nameError) { nameError.style.display = 'none'; nameError.textContent = ''; }
         if (phoneError) { phoneError.style.display = 'none'; phoneError.textContent = ''; }
         if (messageError) { messageError.style.display = 'none'; messageError.textContent = ''; }
+        if (nameInput) nameInput.classList.remove('input-field-error');
+        if (phoneInput) phoneInput.classList.remove('input-field-error');
+        if (messageInput) messageInput.classList.remove('input-field-error');
         if (statusMsg) {
           statusMsg.style.display = 'none';
           statusMsg.className = 'form-status-msg';
@@ -405,13 +408,26 @@
         return (translations[curLang] && translations[curLang][key]) || fallback;
       }
 
-      [nameInput, phoneInput, messageInput].forEach(inp => {
-        if (inp) {
-          inp.addEventListener('input', () => {
-            clearErrors();
-          });
-        }
-      });
+      if (nameInput) {
+        nameInput.addEventListener('input', () => {
+          nameInput.classList.remove('input-field-error');
+          if (nameError) { nameError.style.display = 'none'; nameError.textContent = ''; }
+        });
+      }
+
+      if (phoneInput) {
+        phoneInput.addEventListener('input', () => {
+          phoneInput.classList.remove('input-field-error');
+          if (phoneError) { phoneError.style.display = 'none'; phoneError.textContent = ''; }
+        });
+      }
+
+      if (messageInput) {
+        messageInput.addEventListener('input', () => {
+          messageInput.classList.remove('input-field-error');
+          if (messageError) { messageError.style.display = 'none'; messageError.textContent = ''; }
+        });
+      }
 
       function normalizePhoneNumber(raw) {
         if (!raw) return '';
@@ -445,39 +461,106 @@
         const phoneVal = (phoneInput ? phoneInput.value : '').trim();
         const messageVal = (messageInput ? messageInput.value : '').trim();
         const hpVal = (hpInput ? hpInput.value : '').trim();
+        const currentLanguage = localStorage.getItem('site_lang') || 'en';
 
-        // Client-side Validation
+        // Client-side Strict Validation
         let hasError = false;
+        let firstErrorInput = null;
 
+        // 1. Full Name Validation
         if (!nameVal || nameVal.length < 2) {
           if (nameError) {
-            nameError.textContent = getTranslation('form.errName', 'Please enter your full name (at least 2 characters).');
+            nameError.textContent = !nameVal 
+              ? (currentLanguage === 'uz' ? 'Iltimos, ismingizni kiriting.' : (currentLanguage === 'ru' ? 'Пожалуйста, введите ваше имя.' : 'Please enter your full name.'))
+              : (currentLanguage === 'uz' ? 'Ismingiz kamida 2 ta belgidan iborat boʻlishi kerak.' : (currentLanguage === 'ru' ? 'Имя должно содержать минимум 2 символа.' : 'Full name must be at least 2 characters.'));
             nameError.style.display = 'block';
           }
+          if (nameInput) nameInput.classList.add('input-field-error');
           hasError = true;
+          if (!firstErrorInput) firstErrorInput = nameInput;
         }
 
-        // Phone Validation: numbers, spaces, +, -, (), . between 7 and 15 digits
-        // Uzbek code (+998) is completely optional: accepts 9-digit local numbers, +998 numbers, or international
+        // 2. Strict Phone Validation
         const phoneDigits = phoneVal.replace(/\D/g, '');
         const phoneValidChars = /^[0-9\s\-\(\)\+\.]+$/.test(phoneVal);
-        if (!phoneVal || !phoneValidChars || phoneDigits.length < 7 || phoneDigits.length > 15) {
+        let phoneErrMsg = '';
+
+        if (!phoneVal) {
+          phoneErrMsg = currentLanguage === 'uz' 
+            ? 'Iltimos, telefon raqamingizni kiriting.' 
+            : (currentLanguage === 'ru' ? 'Пожалуйста, введите номер телефона.' : 'Please enter your phone number.');
+        } else if (!phoneValidChars) {
+          phoneErrMsg = currentLanguage === 'uz' 
+            ? 'Telefon raqamda notoʻgʻri belgilar mavjud.' 
+            : (currentLanguage === 'ru' ? 'Номер телефона содержит недопустимые символы.' : 'Phone number contains invalid characters.');
+        } else if (phoneDigits.startsWith('998')) {
+          // With Uzbekistan code +998 (Must be exactly 12 digits)
+          if (phoneDigits.length !== 12) {
+            const diff = 12 - phoneDigits.length;
+            phoneErrMsg = currentLanguage === 'uz'
+              ? (phoneDigits.length < 12 
+                  ? `Telefon raqam toʻliq emas (+998 bilan 12 ta raqam boʻlishi kerak, ${diff} ta raqam yetishmayapti).` 
+                  : 'Telefon raqamda ortiqcha raqamlar bor (12 ta raqam boʻlishi kerak).')
+              : (currentLanguage === 'ru'
+                  ? (phoneDigits.length < 12 ? `Номер не полон (должно быть 12 цифр с кодом +998, не хватает ${diff} цифр).` : 'Слишком много цифр в номере.')
+                  : `Phone number must be exactly 12 digits with +998 code (missing ${diff} digits).`);
+          }
+        } else if (!phoneVal.trim().startsWith('+')) {
+          // Local Uzbekistan number without +998 (Must be exactly 9 digits, e.g. 90 123 45 67)
+          if (phoneDigits.length !== 9) {
+            const diff = 9 - phoneDigits.length;
+            phoneErrMsg = currentLanguage === 'uz'
+              ? (phoneDigits.length < 9 
+                  ? `Telefon raqam toʻliq emas (9 ta raqam boʻlishi kerak, ${diff} ta raqam yetishmayapti, masalan: 90 123 45 67).` 
+                  : 'Telefon raqamda ortiqcha raqamlar bor (9 ta raqam boʻlishi kerak).')
+              : (currentLanguage === 'ru'
+                  ? (phoneDigits.length < 9 ? `Номер не полон (должно быть ровно 9 цифр, например: 90 123 45 67).` : 'Слишком много цифр (должно быть 9 цифр).')
+                  : `Phone number must be exactly 9 digits without country code (e.g. 90 123 45 67).`);
+          }
+        } else {
+          // International number (starts with +, not 998)
+          if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+            phoneErrMsg = currentLanguage === 'uz' 
+              ? 'Iltimos, xalqaro telefon raqamni toʻliq kiriting.' 
+              : 'Please enter a complete international phone number.';
+          }
+        }
+
+        if (phoneErrMsg) {
           if (phoneError) {
-            phoneError.textContent = getTranslation('form.errPhone', 'Please enter a valid phone number (e.g. 90 123 45 67 or +998 90 123 45 67).');
+            phoneError.textContent = phoneErrMsg;
             phoneError.style.display = 'block';
           }
+          if (phoneInput) phoneInput.classList.add('input-field-error');
           hasError = true;
+          if (!firstErrorInput) firstErrorInput = phoneInput;
         }
 
+        // 3. Message Validation
         if (!messageVal || messageVal.length < 5) {
           if (messageError) {
-            messageError.textContent = getTranslation('form.errMessage', 'Please enter a message (at least 5 characters).');
+            messageError.textContent = !messageVal
+              ? (currentLanguage === 'uz' ? 'Iltimos, xabaringizni yozing.' : (currentLanguage === 'ru' ? 'Пожалуйста, напишите сообщение.' : 'Please enter your message.'))
+              : (currentLanguage === 'uz' ? 'Xabaringiz kamida 5 ta belgidan iborat boʻlishi kerak.' : (currentLanguage === 'ru' ? 'Сообщение должно содержать минимум 5 символов.' : 'Message must be at least 5 characters.'));
             messageError.style.display = 'block';
           }
+          if (messageInput) messageInput.classList.add('input-field-error');
           hasError = true;
+          if (!firstErrorInput) firstErrorInput = messageInput;
         }
 
-        if (hasError) return;
+        // IF ANY FIELD HAS ERROR -> STOP! DO NOT SEND TO SERVER!
+        if (hasError) {
+          if (firstErrorInput) firstErrorInput.focus();
+          if (statusMsg) {
+            statusMsg.className = 'form-status-msg status-error';
+            statusMsg.textContent = currentLanguage === 'uz' 
+              ? 'Iltimos, qizil bilan koʻrsatilgan maydonlarni tekshirib toʻgʻrilang.' 
+              : (currentLanguage === 'ru' ? 'Пожалуйста, проверьте поля, выделенные красным.' : 'Please check and correct the highlighted fields.');
+            statusMsg.style.display = 'block';
+          }
+          return;
+        }
 
         // Auto-normalize phone number for clean delivery to backend & Telegram
         const finalPhone = normalizePhoneNumber(phoneVal);

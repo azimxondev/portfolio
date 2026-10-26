@@ -912,6 +912,11 @@ body {
   margin-top: 0.25rem;
 }
 
+.input-field-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25) !important;
+}
+
 /* Right Contact Cards Stack (Screenshot 1: Email, Telegram, GitHub, etc.) */
 .contact-cards-stack {
   display: flex;

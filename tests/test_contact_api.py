@@ -92,6 +92,28 @@ def test_contact_validation_invalid_phone_letters():
     assert response.status_code == 422
 
 
+def test_contact_validation_incomplete_uzbek_phone_11_digits():
+    """Verify incomplete Uzbek phone with 11 digits (+998 98 598456) is rejected."""
+    response = client.post("/api/contact", json={
+        "full_name": "John Smith",
+        "phone": "+998 98 598456",
+        "message": "Valid test message here"
+    })
+    assert response.status_code == 422
+    assert "12 digits" in str(response.json())
+
+
+def test_contact_validation_incomplete_local_phone_8_digits():
+    """Verify incomplete local phone with 8 digits (90 456 12 3) is rejected."""
+    response = client.post("/api/contact", json={
+        "full_name": "John Smith",
+        "phone": "90 456 12 3",
+        "message": "Valid test message here"
+    })
+    assert response.status_code == 422
+    assert "9 digits" in str(response.json())
+
+
 def test_contact_validation_missing_message():
     """Scenario 5: Missing message."""
     response = client.post("/api/contact", json={
