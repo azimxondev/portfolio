@@ -491,27 +491,54 @@
         try {
           const isLocalDevOtherPort = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '8000';
           const isFileProtocol = window.location.protocol === 'file:';
-          const apiUrl = (isLocalDevOtherPort || isFileProtocol) ? 'http://127.0.0.1:8000/api/contact' : '/api/contact';
+          
+          // Smart resilient endpoints (tries local 8000, then automatically falls back to live Render API)
+          const targetEndpoints = [];
+          if (window.location.hostname.includes('onrender.com')) {
+            targetEndpoints.push('/api/contact');
+          } else if (isLocalDevOtherPort || isFileProtocol) {
+            targetEndpoints.push('http://127.0.0.1:8000/api/contact');
+            targetEndpoints.push('https://portfolio-920p.onrender.com/api/contact');
+          } else {
+            targetEndpoints.push('/api/contact');
+            targetEndpoints.push('https://portfolio-920p.onrender.com/api/contact');
+          }
 
-          const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              full_name: nameVal,
-              phone: finalPhone,
-              message: messageVal,
-              hp_website: hpVal
-            })
-          });
+          let response = null;
+          let data = null;
+          let lastError = null;
 
-          const data = await response.json().catch(() => ({}));
+          for (const endpoint of targetEndpoints) {
+            try {
+              const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  full_name: nameVal,
+                  phone: finalPhone,
+                  message: messageVal,
+                  hp_website: hpVal
+                })
+              });
+              const resData = await res.json().catch(() => ({}));
+              response = res;
+              data = resData;
+              if (res.ok) {
+                break; // Successfully sent
+              }
+            } catch (err) {
+              lastError = err;
+            }
+          }
+
           submitBtn.classList.remove('state-sending');
 
-          if (response.ok && data.success) {
+          if (response && response.ok && data && data.success) {
             // UI State: Success
             const successText = getTranslation('form.success', "Message sent successfully!");
+            submitBtn.classList.remove('state-error');
             submitBtn.classList.add('state-success');
             submitBtn.textContent = '✓ ' + (currentLang === 'uz' ? 'Yuborildi!' : (currentLang === 'ru' ? 'Отправлено!' : 'Sent!'));
 
@@ -531,13 +558,14 @@
               if (statusMsg) statusMsg.style.display = 'none';
             }, 4000);
 
-          } else {
-            // Server returned an error (e.g. 422, 502, 503, 429)
-            let errorText = data.detail || data.message || getTranslation('form.error', 'Failed to send. Please try again.');
-            if (Array.isArray(data.detail)) {
+          } else if (response) {
+            // Server returned a known error (e.g. 422, 502, 503, 429)
+            let errorText = (data && (data.detail || data.message)) || getTranslation('form.error', 'Failed to send. Please try again.');
+            if (Array.isArray(data && data.detail)) {
               errorText = data.detail.map(d => d.msg || JSON.stringify(d)).join(', ');
             }
 
+            submitBtn.classList.remove('state-success');
             submitBtn.disabled = false;
             submitBtn.textContent = getTranslation('form.tryAgain', 'Try Again');
 
@@ -552,10 +580,12 @@
             setTimeout(() => {
               submitBtn.textContent = getTranslation('form.send', 'Send Message');
             }, 3000);
+          } else {
+            throw lastError || new Error("Failed to connect to contact server");
           }
         } catch (networkErr) {
           console.error('Contact submit network error:', networkErr);
-          submitBtn.classList.remove('state-sending');
+          submitBtn.classList.remove('state-sending', 'state-success');
           submitBtn.disabled = false;
           submitBtn.textContent = getTranslation('form.tryAgain', 'Try Again');
 
