@@ -513,19 +513,20 @@
             })
           });
 
-          const data = await response.json().catch(() => ({}));
+          const isSuccess = response && (response.ok || response.status === 200 || (data && data.success === true));
+
           submitBtn.classList.remove('state-sending');
 
-          if (response.ok && data.success) {
-            // UI State: Success
+          if (isSuccess) {
+            // UI State: Success (Green)
             const successText = getTranslation('form.success', "Message sent successfully!");
             submitBtn.classList.remove('state-error');
             submitBtn.classList.add('state-success');
             submitBtn.textContent = '✓ ' + (currentLang === 'uz' ? 'Yuborildi!' : (currentLang === 'ru' ? 'Отправлено!' : 'Sent!'));
 
             if (statusMsg) {
-              statusMsg.textContent = successText;
               statusMsg.className = 'form-status-msg status-success';
+              statusMsg.textContent = '✓ ' + successText;
               statusMsg.style.display = 'block';
             }
 
@@ -537,36 +538,39 @@
               submitBtn.textContent = getTranslation('form.send', 'Send Message');
               submitBtn.disabled = false;
               if (statusMsg) statusMsg.style.display = 'none';
-            }, 4000);
+            }, 5000);
 
           } else {
-            // Server returned an error (e.g. 422, 502, 503, 429)
+            // UI State: Error (Red)
             let errorText = (data && (data.detail || data.message)) || getTranslation('form.error', 'Failed to send. Please try again.');
             if (Array.isArray(data && data.detail)) {
               errorText = data.detail.map(d => d.msg || JSON.stringify(d)).join(', ');
             }
 
             submitBtn.classList.remove('state-success');
+            submitBtn.classList.add('state-error');
             submitBtn.disabled = false;
-            submitBtn.textContent = getTranslation('form.tryAgain', 'Try Again');
+            submitBtn.textContent = currentLang === 'uz' ? 'Qayta urinish' : 'Try Again';
 
             if (statusMsg) {
-              statusMsg.textContent = errorText;
               statusMsg.className = 'form-status-msg status-error';
+              statusMsg.textContent = errorText;
               statusMsg.style.display = 'block';
             }
 
             showToast(errorText);
 
             setTimeout(() => {
+              submitBtn.classList.remove('state-error');
               submitBtn.textContent = getTranslation('form.send', 'Send Message');
-            }, 3000);
+            }, 4000);
           }
         } catch (networkErr) {
           console.error('Contact submit network error:', networkErr);
           submitBtn.classList.remove('state-sending', 'state-success');
+          submitBtn.classList.add('state-error');
           submitBtn.disabled = false;
-          submitBtn.textContent = getTranslation('form.tryAgain', 'Try Again');
+          submitBtn.textContent = currentLang === 'uz' ? 'Qayta urinish' : 'Try Again';
 
           const networkErrorText = getTranslation(
             'form.error',
@@ -574,14 +578,15 @@
           );
 
           if (statusMsg) {
-            statusMsg.textContent = networkErrorText;
             statusMsg.className = 'form-status-msg status-error';
+            statusMsg.textContent = networkErrorText;
             statusMsg.style.display = 'block';
           }
 
           showToast(networkErrorText);
 
           setTimeout(() => {
+            submitBtn.classList.remove('state-error');
             submitBtn.textContent = getTranslation('form.send', 'Send Message');
           }, 4000);
         }
